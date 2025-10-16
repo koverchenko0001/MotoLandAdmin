@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36603.0 d17.14
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MotoLandAdmin", "MotoLandAdmin.csproj", "{68F5677F-9C44-4B65-86C3-2A516CAC3CCF}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{68F5677F-9C44-4B65-86C3-2A516CAC3CCF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{68F5677F-9C44-4B65-86C3-2A516CAC3CCF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{68F5677F-9C44-4B65-86C3-2A516CAC3CCF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{68F5677F-9C44-4B65-86C3-2A516CAC3CCF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7CECADAB-597F-464C-B49E-A01B3B1E7303}
+	EndGlobalSection
+EndGlobal
