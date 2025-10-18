@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MotoLandAdmin"
         mc:Ignorable="d"
-        Title="MotoLand Admin" Height="450" Width="800">
+        Title="MotoLand Admin" Height="500" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
     <Grid>
-        <Frame x:Name="MainFrame"/>
-
+        <Frame x:Name="MainFrame" Margin="10,10,10,10" Grid.ColumnSpan="4"/>
     </Grid>
 </Window>
+   

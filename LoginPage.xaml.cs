@@ -14,13 +14,20 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MotoLandAdmin {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
-    public partial class MainWindow : Window {
-        public MainWindow() {
+
+
+    public partial class LoginPage : Page {
+
+        private MainWindow _mainWindow;
+
+        public LoginPage() {
             InitializeComponent();
-            MainFrame.Navigate(new LoginPage());
+        }
+
+        private void loginButton_Click(object sender, RoutedEventArgs e) {
+            Application.Current.MainWindow.Height = 600;
+            Application.Current.MainWindow.Width = 1000;
+            Application.Current.MainWindow.ResizeMode = ResizeMode.CanResize;
         }
     }
 }
