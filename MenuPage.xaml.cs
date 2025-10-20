@@ -1,4 +1,5 @@
-﻿using Mysqlx.Notice;
+﻿using Mysqlx.Connection;
+using Mysqlx.Notice;
 using MySqlX.XDevAPI.Relational;
 using System;
 using System.Collections.Generic;
@@ -29,11 +30,20 @@ namespace MotoLandAdmin {
             _mainWindow = (MainWindow)Application.Current.MainWindow;
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e) {
-            if (sender is Button button) {
-                switch (button.Name) {
-                    case "ExitMenu":
-                        Application.Current.Shutdown();
+
+//            Connect conn = new Connect();
+
+  
+        private void MenuItem_Click(object sender, RoutedEventArgs e) {
+            core cs = new core();
+            if (sender is MenuItem btn) {
+                switch ( btn.Name) {
+                    case "Exit":
+                        _mainWindow.Close();
+                        break;
+                    case "logOut": 
+                            cs.setNewDimensions("login");
+                            //_mainWindow.MainFrame.Navigate(new LoginPage());
                         break;
                     default:
                         break;
@@ -41,29 +51,13 @@ namespace MotoLandAdmin {
             }
         }
 
-        private void MenuItem_Click(object sender, RoutedEventArgs e) {
-
+        private void Menu_Loaded(object sender, RoutedEventArgs e) {
+            User user = new User();
+            userNameItem.Header = user.ToString();
         }
+        ///private void MenuItem_Click
 
-        private void ExitMenu_Click(object sender, RoutedEventArgs e) {
-            Application.Current.Shutdown();
 
-        }
 
-        private void NewMenu_Click(object sender, RoutedEventArgs e) {
-            Connect conn = new Connect();
-        }
-
-        private void logOut_Click(object sender, RoutedEventArgs e) {
-            logOutUser();
-        }
-
-        private void logOutUser() {
-            Application.Current.MainWindow.Height = 500;
-            Application.Current.MainWindow.Width = 300;
-            Application.Current.MainWindow.ResizeMode = ResizeMode.CanResize;
-
-            _mainWindow.MainFrame.Navigate(new LoginPage());
-        } ///private void logOutUser
     }
 }

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -18,9 +19,16 @@ namespace MotoLandAdmin {
     /// Interaction logic for MainWindow.xaml
     /// </summary>
     public partial class MainWindow : Window {
+
         public MainWindow() {
             InitializeComponent();
             MainFrame.Navigate(new LoginPage());
         }
+
+        private void Window_Closing(object sender, CancelEventArgs e) {
+            e.Cancel = MessageBox.Show("Biztos, hogy bezárod?", "Kilépés",
+                        MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No;
+        } ///private void Window_Closing
+
     }
 }

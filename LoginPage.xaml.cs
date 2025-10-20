@@ -23,10 +23,12 @@ namespace MotoLandAdmin {
         private CommandCom _command;
         private Boolean loginFieldsAreEmpty = true;
 
+
         public LoginPage() {
             InitializeComponent();
             _mainWindow = (MainWindow)Application.Current.MainWindow;
         }
+
 
         private void setNewDimensions() {
             Application.Current.MainWindow.Height = 600;
@@ -36,13 +38,14 @@ namespace MotoLandAdmin {
             _mainWindow.MainFrame.Navigate(new MenuPage(_mainWindow));
         } ///private void setNewDimensions
 
+
         private void userMailTB_TextChanged(object sender, TextChangedEventArgs e) {
-            checkFieldsForEmpty();
+            //checkFieldsForEmpty();
         } ///private void userMailTB_TextChanged
 
 
         private void userPasswordPB_PasswordChanged(object sender, RoutedEventArgs e) {
-            checkFieldsForEmpty();
+            //checkFieldsForEmpty();
         } ///private void userPasswordPB_PasswordChanged
 
 
@@ -54,11 +57,13 @@ namespace MotoLandAdmin {
             }
         } ///private void checkFieldsForEmpty
 
+
         private void loginUserBtn_Click(object sender, RoutedEventArgs e) {
             try {
                 _command = new CommandCom();
                 if (_command.LoginUser(userMailTB.Text, userPasswordPB.Password)) {
-                    setNewDimensions();
+                    core cs = new core();
+                    cs.setNewDimensions("menu");
                 } else {
                     MessageBox.Show("Hibás bejelentkezési adatok!\nCsak mondom!", "Bejelentkezési hiba!");
                     resetLoginFields();
@@ -68,6 +73,7 @@ namespace MotoLandAdmin {
                 MessageBox.Show(ex.Message, "Error");
             }
         } ///private void loginUserBtn_Click
+
 
         private void resetLoginFields() {
             userMailTB.Clear();

@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
+using System.Numerics;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -16,8 +17,12 @@ namespace MotoLandAdmin {
             try {
                 con.Connection.Open();
 
-                string sql = @"SELECT * 
-                                    FROM user_mstr, password_mstr
+                string sql = @"SELECT 
+                                    UserID_MSTR,
+                                    UserMail_MSTR,
+                                    UserNickName_MSTR
+                               FROM 
+                                    user_mstr, password_mstr
                                WHERE 
                                     UserMail_MSTR= @usermail AND 
                                     PasswordPassword_MSTR= @userpassword AND
@@ -28,10 +33,35 @@ namespace MotoLandAdmin {
                 cmd.Parameters.AddWithValue("@usermail", usermail);
                 cmd.Parameters.AddWithValue("@userpassword", userpassword);
 
-                MySqlDataReader dr = cmd.ExecuteReader();
-                bool isValid = dr.Read();
+                MySqlDataReader reader = cmd.ExecuteReader();
+                bool isValid = false;
+                while (reader.Read()) {
+                    isValid = true;
+/*                    User user = new User {
+                        id = Convert.ToInt32(reader["UserID_MSTR"]),
+                        nickname = reader["UserNickName_MSTR"].ToString(),
+                        mail = reader["UserMail_MSTR"].ToString()
+                    };*/
+                    User user = new User(Convert.ToInt32(reader["UserID_MSTR"]),
+                                         reader["UserNickName_MSTR"].ToString(),
+                                         reader["UserMail_MSTR"].ToString());
 
-                dr.Close();
+
+                    /*                    Actor actor = new Actor {
+                                            ActorId = Convert.ToInt32(reader["actor_id"]),
+                                            FirstName = reader["first_name"].ToString(),
+                                            LastName = reader["last_name"].ToString(),
+                                            LastUpdate = Convert.ToDateTime(reader["last_update"])
+                                        };
+                                        actors.Add(actor);*/
+                }
+
+
+
+
+                //bool isValid = reader.Read();
+
+                reader.Close();
                 con.Connection.Close();
 
                 return isValid;

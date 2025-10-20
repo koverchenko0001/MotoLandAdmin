@@ -76,6 +76,7 @@
                 <Grid Grid.Column="1">
                     <TextBox 
                             x:Name="userMailTB"
+                            Text="istvan.lovei@yahoo.com"
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center" 
                             FontSize="10" 
@@ -112,6 +113,7 @@
                 <Grid Grid.Column="1">
                     <PasswordBox
                             x:Name="userPasswordPB"
+                            Password="katymaty"
                             HorizontalAlignment="Left" 
                             VerticalAlignment="Center" 
                             FontSize="10" 
@@ -141,8 +143,8 @@
                 Width="100"
                 Margin="0,0,5,0"
                 Cursor="Hand" 
-                IsEnabled="False" 
                 Click="loginUserBtn_Click"/>
+                <!--IsEnabled="False" -->
 
         </Grid>
 

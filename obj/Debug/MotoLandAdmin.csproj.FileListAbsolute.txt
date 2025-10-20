@@ -51,3 +51,4 @@ C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLand.B770F3FE.Up2Date
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.exe
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.pdb
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.exe.config
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin_Content.g.cs

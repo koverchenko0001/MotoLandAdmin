@@ -9,13 +9,18 @@
       Title="Menu">
 
     <Grid>
-        <Menu>
+        <Menu Height="20" VerticalAlignment="Top" Loaded="Menu_Loaded">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
             
             <MenuItem Header="Fájl">
-                <MenuItem Header="Új" Name="NewMenu" Click="NewMenu_Click"/>
+                <MenuItem Header="Új" />
                 <MenuItem Header="Megnyitás" />
                 <Separator />
-                <MenuItem Header="Kilépés" Name="ExitMenu" Click="ExitMenu_Click"/>
+                <MenuItem Header="Kilépés" Name="Exit" Click="MenuItem_Click"/>
             </MenuItem>
 
             <MenuItem Header="Szerkesztés">
@@ -35,9 +40,9 @@
             <MenuItem Header="Felhasználó">
                 <MenuItem Header="Account" />
                 <Separator />
-                <MenuItem Header="Kijelentkezés" Name="logOut" Click="logOut_Click"/>
+                <MenuItem Header="Kijelentkezés" Name="logOut" Click="MenuItem_Click"/>
             </MenuItem>
-            <MenuItem Header="Súgó">
+            <MenuItem Header="User" Name="userNameItem" HorizontalAlignment="Right">
                 <MenuItem Header="Tartalom" />
                 <MenuItem Header="Frissítések keresése" />
                 <Separator />
