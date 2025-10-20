@@ -32,6 +32,11 @@
                 <Separator />
                 <MenuItem Header="Teljes képernyő" />
             </MenuItem>
+            <MenuItem Header="Felhasználó">
+                <MenuItem Header="Account" />
+                <Separator />
+                <MenuItem Header="Kijelentkezés" Name="logOut" Click="logOut_Click"/>
+            </MenuItem>
             <MenuItem Header="Súgó">
                 <MenuItem Header="Tartalom" />
                 <MenuItem Header="Frissítések keresése" />

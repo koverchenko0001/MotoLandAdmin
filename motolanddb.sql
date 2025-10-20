@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.1deb1+deb12u1
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Gép: localhost
--- Létrehozás ideje: 2025. Okt 16. 17:49
--- Kiszolgáló verziója: 10.11.14-MariaDB-0+deb12u2
--- PHP verzió: 8.2.29
+-- Gép: 127.0.0.1
+-- Létrehozás ideje: 2025. Okt 20. 18:52
+-- Kiszolgáló verziója: 10.4.32-MariaDB
+-- PHP verzió: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,28 +18,28 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Adatbázis: `c2465motolanddb`
+-- Adatbázis: `motolanddb`
 --
-CREATE DATABASE IF NOT EXISTS `c2465motolanddb` DEFAULT CHARACTER SET utf8mb3 COLLATE utf8mb3_general_ci;
-USE `c2465motolanddb`;
+CREATE DATABASE IF NOT EXISTS `motolanddb` DEFAULT CHARACTER SET utf8 COLLATE utf8_general_ci;
+USE `motolanddb`;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `Cities_MSTR`
+-- Tábla szerkezet ehhez a táblához `cities_mstr`
 --
 
-CREATE TABLE `Cities_MSTR` (
+CREATE TABLE `cities_mstr` (
   `CitiesID_MSTR` bigint(20) NOT NULL,
   `CitiesCity_MSTR` varchar(40) NOT NULL,
   `CitiesCounty_MSTR` varchar(50) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_hungarian_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `Cities_MSTR`
+-- A tábla adatainak kiíratása `cities_mstr`
 --
 
-INSERT INTO `Cities_MSTR` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MSTR`) VALUES
+INSERT INTO `cities_mstr` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MSTR`) VALUES
 (6305, 'Aba', 'Fejér megye'),
 (6306, 'Abádszalók', 'Jász-Nagykun-Szolnok megye'),
 (6307, 'Abaliget', 'Baranya megye'),
@@ -1336,7 +1336,7 @@ INSERT INTO `Cities_MSTR` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MST
 (7598, 'Keszőhidegkút', 'Tolna megye'),
 (7599, 'Keszthely', 'Zala megye'),
 (7600, 'Kesztölc', 'Komárom-Esztergom megye');
-INSERT INTO `Cities_MSTR` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MSTR`) VALUES
+INSERT INTO `cities_mstr` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MSTR`) VALUES
 (7601, 'Keszü', 'Baranya megye'),
 (7602, 'Kétbodony', 'Nógrád megye'),
 (7603, 'Kétegyháza', 'Békés megye'),
@@ -2634,7 +2634,7 @@ INSERT INTO `Cities_MSTR` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MST
 (8895, 'Szentgyörgyvár', 'Zala megye'),
 (8896, 'Szentgyörgyvölgy', 'Zala megye'),
 (8897, 'Szentimrefalva', 'Veszprém megye');
-INSERT INTO `Cities_MSTR` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MSTR`) VALUES
+INSERT INTO `cities_mstr` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MSTR`) VALUES
 (8898, 'Szentistván', 'Borsod-Abaúj-Zemplén megye'),
 (8899, 'Szentistvánbaksa', 'Borsod-Abaúj-Zemplén megye'),
 (8900, 'Szentjakabfa', 'Veszprém megye'),
@@ -3199,19 +3199,19 @@ INSERT INTO `Cities_MSTR` (`CitiesID_MSTR`, `CitiesCity_MSTR`, `CitiesCounty_MST
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `Countries_MSTR`
+-- Tábla szerkezet ehhez a táblához `countries_mstr`
 --
 
-CREATE TABLE `Countries_MSTR` (
+CREATE TABLE `countries_mstr` (
   `CountriesID_MSTR` bigint(20) NOT NULL,
   `CountriesCountry_MSTR` varchar(30) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_hungarian_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `Countries_MSTR`
+-- A tábla adatainak kiíratása `countries_mstr`
 --
 
-INSERT INTO `Countries_MSTR` (`CountriesID_MSTR`, `CountriesCountry_MSTR`) VALUES
+INSERT INTO `countries_mstr` (`CountriesID_MSTR`, `CountriesCountry_MSTR`) VALUES
 (1, 'Hollandia'),
 (2, 'Magyarország'),
 (3, 'Németország'),
@@ -3236,32 +3236,39 @@ INSERT INTO `Countries_MSTR` (`CountriesID_MSTR`, `CountriesCountry_MSTR`) VALUE
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `Password_MSTR`
+-- Tábla szerkezet ehhez a táblához `password_mstr`
 --
 
-CREATE TABLE `Password_MSTR` (
+CREATE TABLE `password_mstr` (
   `PasswordID_MSTR` bigint(20) NOT NULL,
   `PasswordUserID_MSTR` int(11) NOT NULL,
   `PasswordPassword_MSTR` varchar(300) NOT NULL,
   `PasswordSalt_MSTR` varchar(100) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- A tábla adatainak kiíratása `password_mstr`
+--
+
+INSERT INTO `password_mstr` (`PasswordID_MSTR`, `PasswordUserID_MSTR`, `PasswordPassword_MSTR`, `PasswordSalt_MSTR`) VALUES
+(1, 3, 'katymaty', '');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `Sex_MSTR`
+-- Tábla szerkezet ehhez a táblához `sex_mstr`
 --
 
-CREATE TABLE `Sex_MSTR` (
+CREATE TABLE `sex_mstr` (
   `SexID_MSTR` bigint(20) NOT NULL,
   `SexSex_MSTR` varchar(10) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- A tábla adatainak kiíratása `Sex_MSTR`
+-- A tábla adatainak kiíratása `sex_mstr`
 --
 
-INSERT INTO `Sex_MSTR` (`SexID_MSTR`, `SexSex_MSTR`) VALUES
+INSERT INTO `sex_mstr` (`SexID_MSTR`, `SexSex_MSTR`) VALUES
 (1, 'Nő'),
 (2, 'Férfi'),
 (3, 'Morgonc');
@@ -3269,30 +3276,32 @@ INSERT INTO `Sex_MSTR` (`SexID_MSTR`, `SexSex_MSTR`) VALUES
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `UserType_MSTR`
+-- Tábla szerkezet ehhez a táblához `usertype_mstr`
 --
 
-CREATE TABLE `UserType_MSTR` (
+CREATE TABLE `usertype_mstr` (
   `UserTypeID_MSTR` bigint(20) NOT NULL,
   `UserTypeType_MSTR` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 --
--- A tábla adatainak kiíratása `UserType_MSTR`
+-- A tábla adatainak kiíratása `usertype_mstr`
 --
 
-INSERT INTO `UserType_MSTR` (`UserTypeID_MSTR`, `UserTypeType_MSTR`) VALUES
-(1, 'admin'),
+INSERT INTO `usertype_mstr` (`UserTypeID_MSTR`, `UserTypeType_MSTR`) VALUES
+(1, 'vendég'),
 (2, 'felhasználó'),
-(3, 'root');
+(3, ''),
+(4, ''),
+(5, 'root');
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `User_DET`
+-- Tábla szerkezet ehhez a táblához `user_det`
 --
 
-CREATE TABLE `User_DET` (
+CREATE TABLE `user_det` (
   `UserID_DET` bigint(20) NOT NULL,
   `UserMSTRID_DET` int(11) NOT NULL,
   `UserFirstName_DET` varchar(20) NOT NULL,
@@ -3305,114 +3314,114 @@ CREATE TABLE `User_DET` (
   `UserCity_DET` varchar(30) NOT NULL,
   `UserAddress_DET` varchar(50) NOT NULL,
   `UserRegDate_MSTR` datetime NOT NULL DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_general_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
 
 -- --------------------------------------------------------
 
 --
--- Tábla szerkezet ehhez a táblához `User_MSTR`
+-- Tábla szerkezet ehhez a táblához `user_mstr`
 --
 
-CREATE TABLE `User_MSTR` (
+CREATE TABLE `user_mstr` (
   `UserID_MSTR` bigint(20) NOT NULL,
   `UserNickName_MSTR` varchar(15) NOT NULL,
   `UserMail_MSTR` varchar(50) NOT NULL,
   `UserTypeID_MSTR` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_hungarian_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
--- A tábla adatainak kiíratása `User_MSTR`
+-- A tábla adatainak kiíratása `user_mstr`
 --
 
-INSERT INTO `User_MSTR` (`UserID_MSTR`, `UserNickName_MSTR`, `UserMail_MSTR`, `UserTypeID_MSTR`) VALUES
-(1, 'https://mockaro', '', 0),
-(2, '', 'https://mockaroo.com/', 0);
+INSERT INTO `user_mstr` (`UserID_MSTR`, `UserNickName_MSTR`, `UserMail_MSTR`, `UserTypeID_MSTR`) VALUES
+(3, 'LoIs', 'istvan.lovei@yahoo.com', 5);
 
 --
 -- Indexek a kiírt táblákhoz
 --
 
 --
--- A tábla indexei `Cities_MSTR`
+-- A tábla indexei `cities_mstr`
 --
-ALTER TABLE `Cities_MSTR`
+ALTER TABLE `cities_mstr`
   ADD PRIMARY KEY (`CitiesID_MSTR`);
 
 --
--- A tábla indexei `Countries_MSTR`
+-- A tábla indexei `countries_mstr`
 --
-ALTER TABLE `Countries_MSTR`
+ALTER TABLE `countries_mstr`
   ADD PRIMARY KEY (`CountriesID_MSTR`);
 
 --
--- A tábla indexei `Password_MSTR`
+-- A tábla indexei `password_mstr`
 --
-ALTER TABLE `Password_MSTR`
+ALTER TABLE `password_mstr`
   ADD PRIMARY KEY (`PasswordID_MSTR`);
 
 --
--- A tábla indexei `Sex_MSTR`
+-- A tábla indexei `sex_mstr`
 --
-ALTER TABLE `Sex_MSTR`
+ALTER TABLE `sex_mstr`
   ADD PRIMARY KEY (`SexID_MSTR`);
 
 --
--- A tábla indexei `UserType_MSTR`
+-- A tábla indexei `usertype_mstr`
 --
-ALTER TABLE `UserType_MSTR`
+ALTER TABLE `usertype_mstr`
   ADD PRIMARY KEY (`UserTypeID_MSTR`);
 
 --
--- A tábla indexei `User_DET`
+-- A tábla indexei `user_det`
 --
-ALTER TABLE `User_DET`
+ALTER TABLE `user_det`
   ADD PRIMARY KEY (`UserID_DET`);
 
 --
--- A tábla indexei `User_MSTR`
+-- A tábla indexei `user_mstr`
 --
-ALTER TABLE `User_MSTR`
-  ADD PRIMARY KEY (`UserID_MSTR`);
+ALTER TABLE `user_mstr`
+  ADD PRIMARY KEY (`UserID_MSTR`),
+  ADD UNIQUE KEY `UserNickName_MSTR` (`UserNickName_MSTR`);
 
 --
 -- A kiírt táblák AUTO_INCREMENT értéke
 --
 
 --
--- AUTO_INCREMENT a táblához `Cities_MSTR`
+-- AUTO_INCREMENT a táblához `cities_mstr`
 --
-ALTER TABLE `Cities_MSTR`
+ALTER TABLE `cities_mstr`
   MODIFY `CitiesID_MSTR` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9458;
 
 --
--- AUTO_INCREMENT a táblához `Password_MSTR`
+-- AUTO_INCREMENT a táblához `password_mstr`
 --
-ALTER TABLE `Password_MSTR`
-  MODIFY `PasswordID_MSTR` bigint(20) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `password_mstr`
+  MODIFY `PasswordID_MSTR` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- AUTO_INCREMENT a táblához `Sex_MSTR`
+-- AUTO_INCREMENT a táblához `sex_mstr`
 --
-ALTER TABLE `Sex_MSTR`
+ALTER TABLE `sex_mstr`
   MODIFY `SexID_MSTR` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
--- AUTO_INCREMENT a táblához `UserType_MSTR`
+-- AUTO_INCREMENT a táblához `usertype_mstr`
 --
-ALTER TABLE `UserType_MSTR`
-  MODIFY `UserTypeID_MSTR` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+ALTER TABLE `usertype_mstr`
+  MODIFY `UserTypeID_MSTR` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT a táblához `User_DET`
+-- AUTO_INCREMENT a táblához `user_det`
 --
-ALTER TABLE `User_DET`
+ALTER TABLE `user_det`
   MODIFY `UserID_DET` bigint(20) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT a táblához `User_MSTR`
+-- AUTO_INCREMENT a táblához `user_mstr`
 --
-ALTER TABLE `User_MSTR`
-  MODIFY `UserID_MSTR` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+ALTER TABLE `user_mstr`
+  MODIFY `UserID_MSTR` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Mysqlx.Notice;
+using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,13 +16,19 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace MotoLandAdmin {
-    /// <summary>
-    /// Interaction logic for MenuPage.xaml
-    /// </summary>
+
+
+    //SqlStatements sql = new SqlStatements();
+
     public partial class MenuPage : Page {
-        public MenuPage() {
+
+        private MainWindow _mainWindow;
+
+        public MenuPage(MainWindow mainWindow) {
             InitializeComponent();
+            _mainWindow = (MainWindow)Application.Current.MainWindow;
         }
+
         private void Button_Click(object sender, RoutedEventArgs e) {
             if (sender is Button button) {
                 switch (button.Name) {
@@ -45,5 +53,17 @@ namespace MotoLandAdmin {
         private void NewMenu_Click(object sender, RoutedEventArgs e) {
             Connect conn = new Connect();
         }
+
+        private void logOut_Click(object sender, RoutedEventArgs e) {
+            logOutUser();
+        }
+
+        private void logOutUser() {
+            Application.Current.MainWindow.Height = 500;
+            Application.Current.MainWindow.Width = 300;
+            Application.Current.MainWindow.ResizeMode = ResizeMode.CanResize;
+
+            _mainWindow.MainFrame.Navigate(new LoginPage());
+        } ///private void logOutUser
     }
 }

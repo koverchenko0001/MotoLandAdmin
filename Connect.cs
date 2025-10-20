@@ -7,8 +7,9 @@ namespace MotoLandAdmin {
         private string ConnectionString;
 
         public Connect() {
-            ConnectionString = $"SERVER=localhost;DATABASE=c2465motolanddb;UID=root;PASSWORD=;SslMode=None";
+            ConnectionString = $"SERVER=localhost;DATABASE=motolanddb;UID=root;PASSWORD=;SslMode=None";
             Connection = new MySqlConnection(ConnectionString);
-        }
-    }
+        } ///public Connect
+
+    } ///internal class Connect
 }

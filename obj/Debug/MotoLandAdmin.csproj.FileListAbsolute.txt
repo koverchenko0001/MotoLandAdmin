@@ -1,7 +1,6 @@
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.csproj.AssemblyReference.cache
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\LoginPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MainWindow.g.cs
-C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\LoginFrame.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MenuPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\App.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin_MarkupCompile.cache
@@ -43,7 +42,6 @@ C:\Users\istva\Desktop\C#\MotoLandAdmin\bin\Debug\System.Runtime.CompilerService
 C:\Users\istva\Desktop\C#\MotoLandAdmin\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\LoginPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MainWindow.baml
-C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\LoginFrame.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MenuPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.g.resources
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.Properties.Resources.resources
