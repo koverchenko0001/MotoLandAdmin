@@ -18,12 +18,12 @@ using System.Windows.Shapes;
 
 namespace MotoLandAdmin {
 
-
     //SqlStatements sql = new SqlStatements();
 
     public partial class MenuPage : Page {
 
         private MainWindow _mainWindow;
+        private CommandCom _command;
 
         public MenuPage(MainWindow mainWindow) {
             InitializeComponent();
@@ -35,11 +35,14 @@ namespace MotoLandAdmin {
 
   
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
-            core cs = new core();
+            Core cs = new Core();
             if (sender is MenuItem btn) {
                 switch ( btn.Name) {
                     case "Exit":
                         _mainWindow.Close();
+                        break;
+                    case "changePassword":
+                        //_mainWindow.MainFrame.Navigate(new ());
                         break;
                     case "logOut": 
                             cs.setNewDimensions("login");
@@ -52,8 +55,8 @@ namespace MotoLandAdmin {
         }
 
         private void Menu_Loaded(object sender, RoutedEventArgs e) {
-            User user = new User();
-            userNameItem.Header = user.ToString();
+/*            _command = new CommandCom();
+            userNameItem.Header = _command.loggedUser;*/
         }
         ///private void MenuItem_Click
 

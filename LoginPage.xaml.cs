@@ -62,7 +62,7 @@ namespace MotoLandAdmin {
             try {
                 _command = new CommandCom();
                 if (_command.LoginUser(userMailTB.Text, userPasswordPB.Password)) {
-                    core cs = new core();
+                    Core cs = new Core();
                     cs.setNewDimensions("menu");
                 } else {
                     MessageBox.Show("Hibás bejelentkezési adatok!\nCsak mondom!", "Bejelentkezési hiba!");

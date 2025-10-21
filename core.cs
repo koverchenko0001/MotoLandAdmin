@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Windows;
 
 namespace MotoLandAdmin {
-    internal class core {
+    public class Core {
 
         private MainWindow _mainWindow;
         private double appWidth, appHeight;
@@ -14,21 +14,28 @@ namespace MotoLandAdmin {
         public void setNewDimensions(string dimension) {
 
             _mainWindow = (MainWindow)Application.Current.MainWindow;
+            //User user = new User();
 
             if (dimension == "login") {
                 appWidth = 300;
                 appHeight = 500;
+                _mainWindow.MainMenu.Visibility = Visibility.Hidden;
+                _mainWindow.statusBar.Visibility = Visibility.Hidden;
                 _mainWindow.MainFrame.Navigate(new LoginPage());
             } else if (dimension == "menu") {
                 appWidth = 1000;
                 appHeight = 600;
-                _mainWindow.MainFrame.Navigate(new MenuPage(_mainWindow));
+                _mainWindow.MainMenu.Visibility = Visibility.Visible;
+                _mainWindow.statusBar.Visibility = Visibility.Visible;
+                _mainWindow.userNameItem.Header = "User"; //user.nickname;
+                _mainWindow.MainFrame.Navigate(new StartPage(_mainWindow));
             }
 
             _mainWindow.Width = appWidth;
             _mainWindow.Height = appHeight;
 
-        } ///private void setNewDimensions
 
+        } ///private void setNewDimensions
     }
-}
+ }
+

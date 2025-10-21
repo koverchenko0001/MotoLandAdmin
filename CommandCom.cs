@@ -4,16 +4,19 @@ using System.Collections.Generic;
 using System.Data;
 using System.Linq;
 using System.Numerics;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 
 namespace MotoLandAdmin {
-    internal class CommandCom {
+    public class CommandCom {
 
         Connect con = new Connect();
 
         public bool LoginUser(string usermail, string userpassword) {
+            //userpassword = Hash256Password(userpassword, GenSalt())
+            bool isValid = false;
             try {
                 con.Connection.Open();
 
@@ -34,33 +37,17 @@ namespace MotoLandAdmin {
                 cmd.Parameters.AddWithValue("@userpassword", userpassword);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
-                bool isValid = false;
-                while (reader.Read()) {
+
+                User user = new User();
+
+                if (reader.Read()) {
+                    /*loggedUID = reader["UserID_MSTR"].ToString();
+                    loggedUser = reader["UserNickName_MSTR"].ToString();*/
+                    user.id = reader["UserID_MSTR"].ToString();
+                    user.mail = reader["UserMail_MSTR"].ToString();
+                    user.nickname = reader["UserNickName_MSTR"].ToString();
                     isValid = true;
-/*                    User user = new User {
-                        id = Convert.ToInt32(reader["UserID_MSTR"]),
-                        nickname = reader["UserNickName_MSTR"].ToString(),
-                        mail = reader["UserMail_MSTR"].ToString()
-                    };*/
-                    User user = new User(Convert.ToInt32(reader["UserID_MSTR"]),
-                                         reader["UserNickName_MSTR"].ToString(),
-                                         reader["UserMail_MSTR"].ToString());
-
-
-                    /*                    Actor actor = new Actor {
-                                            ActorId = Convert.ToInt32(reader["actor_id"]),
-                                            FirstName = reader["first_name"].ToString(),
-                                            LastName = reader["last_name"].ToString(),
-                                            LastUpdate = Convert.ToDateTime(reader["last_update"])
-                                        };
-                                        actors.Add(actor);*/
                 }
-
-
-
-
-                //bool isValid = reader.Read();
-
                 reader.Close();
                 con.Connection.Close();
 
@@ -72,6 +59,23 @@ namespace MotoLandAdmin {
             }
 
         } ///public bool LoginUser
+
+        public string GenSalt() {
+            byte[] salt = new byte[16];
+            //using (var rng = new System.Security.Cryptography.RNGCryptoServiceProvider()) {
+            using (var rng = RandomNumberGenerator.Create()) {
+                rng.GetBytes(salt);
+            }
+            return Convert.ToBase64String(salt);
+        } ///public string Gensalt
+
+        public string Hash256Password(string password, string salt) {
+            //byte[] saltBytes = Convert.FromBase64String(salt);
+            using (var h256 = new HMACSHA256(Encoding.UTF8.GetBytes(salt))) {
+                byte[] h = h256.ComputeHash(Encoding.UTF8.GetBytes(password));
+                return Convert.ToBase64String(h);
+            }
+        } ///public string HashPassword
 
 
 

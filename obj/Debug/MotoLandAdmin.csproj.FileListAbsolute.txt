@@ -52,3 +52,11 @@ C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.exe
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.pdb
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.exe.config
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin_Content.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\StartPage.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\StartPage.baml
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\ChangePasswordPage.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\PropertiesPage.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\ChangePasswordPage.baml
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\PropertiesPage.baml
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\AccountSetupPage.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\AccountSetupPage.baml

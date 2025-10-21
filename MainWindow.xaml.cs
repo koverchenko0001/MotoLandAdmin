@@ -30,5 +30,33 @@ namespace MotoLandAdmin {
                         MessageBoxButton.YesNo, MessageBoxImage.Question, MessageBoxResult.No) == MessageBoxResult.No;
         } ///private void Window_Closing
 
+        private void MenuItem_Click(object sender, RoutedEventArgs e) {
+            Core cs = new Core();
+            if (sender is MenuItem btn) {
+                switch (btn.Name) {
+                    case "Exit":
+                        Close();
+                        break;
+                    case "accountSetup":
+                        MainFrame.Navigate(new AccountSetupPage());
+                        break;
+                    case "properties":
+                        MainFrame.Navigate(new PropertiesPage());
+                        break;
+                    case "changePassword":
+                        MainFrame.Navigate(new ChangePasswordPage());
+                        break;
+                    case "logOut":
+                        cs.setNewDimensions("login");
+                        //_mainWindow.MainFrame.Navigate(new LoginPage());
+                        break;
+                    default:
+                        break;
+                }
+            }
+        }
+
+
+
     }
 }

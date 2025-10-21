@@ -7,10 +7,65 @@
         mc:Ignorable="d"
         Title="MotoLand Admin" Height="500" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
+
+        <Menu Height="20" VerticalAlignment="Top" Name="MainMenu" Visibility="Hidden">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Top"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+
+            <MenuItem Header="Fájl">
+                <MenuItem Header="Adatbázis">
+                    <MenuItem Header="Exportálás" />
+                    <MenuItem Header="Importálás" />
+                </MenuItem>
+                
+                <Separator />
+                
+                <MenuItem Header="Kilépés" Name="Exit" Click="MenuItem_Click"/>
+            </MenuItem>
+
+            <MenuItem Header="Karbantartás">
+                <MenuItem Header="Felhasználók" />
+                <MenuItem Header="Termék" />
+                <MenuItem Header="Segéd táblák" />
+                <MenuItem Header="Rendelés" />
+                <Separator/>
+                <MenuItem Header="Beállítások" />
+            </MenuItem>
+            <MenuItem Header="Kimutatás">
+                <MenuItem Header="Rendelés kimutatás" />
+                <MenuItem Header="Ügyfél kimutatás" />
+            </MenuItem>
+            <MenuItem Header="Felhasználó">
+                <MenuItem Header="Account" />
+                <Separator />
+            </MenuItem>
+            <MenuItem Header="User" Name="userNameItem" HorizontalAlignment="Right">
+                <MenuItem Header="Profil" Name="accountSetup" Click="MenuItem_Click"/>
+                <Separator />
+                <MenuItem Header="Jelszó csere" Name="changePassword" Click="MenuItem_Click"/>
+                <Separator />
+                <MenuItem Header="Kijelentkezés" Name="logOut" Click="MenuItem_Click"/>
+            </MenuItem>
+        </Menu>
+
+
+
+
         <Frame x:Name="MainFrame" 
                Margin="10,10,10,10" 
                Grid.ColumnSpan="4" 
-               NavigationUIVisibility="Hidden"/> <!--HIDE NAVIGATION -->
+               NavigationUIVisibility="Hidden"/>
+                <!--HIDE NAVIGATION -->
+        <StatusBar VerticalAlignment="Bottom" Height="22" Name="statusBar" Visibility="Hidden">
+            <StatusBarItem>
+                <TextBlock x:Name="statusBarText" Text="ALT+F4 - Kilépés" FontSize="10" Margin="5,0,0,2"/>
+            </StatusBarItem>
+        </StatusBar>
+
+
     </Grid>
 </Window>
    
