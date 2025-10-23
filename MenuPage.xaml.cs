@@ -23,7 +23,7 @@ namespace MotoLandAdmin {
     public partial class MenuPage : Page {
 
         private MainWindow _mainWindow;
-        private CommandCom _command;
+        //private CommandCom _command;
 
         public MenuPage(MainWindow mainWindow) {
             InitializeComponent();

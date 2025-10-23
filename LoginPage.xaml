@@ -18,7 +18,7 @@
             <RowDefinition Height="30"/>
             <RowDefinition Height="30"/>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="50"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
 
         <Grid Grid.Row="0">
@@ -64,27 +64,27 @@
 
                 <Grid Grid.Column="0">
                     <TextBlock 
-                            HorizontalAlignment="Right" 
-                            VerticalAlignment="Center" 
-                            FontSize="12" 
-                            FontWeight="Normal"
-                            Foreground="Gray" 
-                            Height="20" 
-                            Text="E-mail cím:" 
-                            Margin="0,0,2,0"/>    
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center" 
+                        FontSize="12" 
+                        FontWeight="Normal"
+                        Foreground="Gray" 
+                        Height="20" 
+                        Text="E-mail cím:" 
+                        Margin="0,0,2,0"/>    
                 </Grid>
                 <Grid Grid.Column="1">
                     <TextBox 
-                            x:Name="userMailTB"
-                            Text="istvan.lovei@yahoo.com"
-                            HorizontalAlignment="Left" 
-                            VerticalAlignment="Center" 
-                            FontSize="10" 
-                            FontWeight="Normal"
-                            Foreground="Gray" 
-                            Height="20" 
-                            Width="150" 
-                            Margin="2,0,0,0" TextChanged="userMailTB_TextChanged"/>
+                        Name="userMailTB"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        FontSize="10" 
+                        FontWeight="Normal"
+                        Foreground="Gray" 
+                        Height="20" 
+                        Width="150" 
+                        Margin="2,0,0,0" 
+                        TextChanged="userMailTB_TextChanged"/>
                 </Grid>
 
             </Grid>
@@ -101,27 +101,27 @@
 
                 <Grid Grid.Column="0">
                     <TextBlock 
-                            HorizontalAlignment="Right" 
-                            VerticalAlignment="Center" 
-                            FontSize="12" 
-                            FontWeight="Normal"
-                            Foreground="Gray" 
-                            Height="20" 
-                            Text="Jelszó:" 
-                            Margin="0,0,2,0"/>
+                        HorizontalAlignment="Right" 
+                        VerticalAlignment="Center" 
+                        FontSize="12" 
+                        FontWeight="Normal"
+                        Foreground="Gray" 
+                        Height="20" 
+                        Text="Jelszó:" 
+                        Margin="0,0,2,0"/>
                 </Grid>
                 <Grid Grid.Column="1">
                     <PasswordBox
-                            x:Name="userPasswordPB"
-                            Password="katymaty"
-                            HorizontalAlignment="Left" 
-                            VerticalAlignment="Center" 
-                            FontSize="10" 
-                            FontWeight="Normal"
-                            Foreground="Gray" 
-                            Height="20" 
-                            Width="150" 
-                            Margin="2,0,0,0" PasswordChanged="userPasswordPB_PasswordChanged"/>
+                        Name="userPasswordPB"
+                        HorizontalAlignment="Left" 
+                        VerticalAlignment="Center" 
+                        FontSize="10" 
+                        FontWeight="Normal"
+                        Foreground="Gray" 
+                        Height="20" 
+                        Width="150" 
+                        Margin="2,0,0,0"
+                        PasswordChanged="UserPasswordPB_PasswordChanged"/>
                 </Grid>
 
             </Grid>
@@ -141,14 +141,30 @@
                 Background="#FF222D22" 
                 Height="25" 
                 Width="100"
-                Margin="0,0,5,0"
                 Cursor="Hand" 
-                Click="loginUserBtn_Click"/>
-                <!--IsEnabled="False" -->
+                Click="loginUserBtn_Click"
+                IsEnabled="False" />
 
         </Grid>
 
 
+        <Grid Grid.Row="6">
+
+            <Button 
+                x:Name="addNewUserBtn"
+                Content="Adminisztrátor"
+                HorizontalAlignment="Center" 
+                VerticalAlignment="Top" 
+                FontSize="12" 
+                FontWeight="Normal"
+                Foreground="White" 
+                Background="#FF222D22" 
+                Height="25" 
+                Width="100"
+                Cursor="Hand" 
+                Click="addNewUser_Click"/>
+
+        </Grid>
 
 
     </Grid>

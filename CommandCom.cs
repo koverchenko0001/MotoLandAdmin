@@ -14,44 +14,118 @@ namespace MotoLandAdmin {
 
         Connect con = new Connect();
 
+        MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
+
+
+
+        public bool adminExist() {
+            bool ret = false;
+            try {
+                con.Connection.Open();
+                string sql = @"SELECT 
+                                    Count(UserTypeID_MSTR) AS AdminCount 
+                                FROM 
+                                    user_mstr
+                                WHERE
+                                    UserTypeID_MSTR = 4 OR UserTypeID_MSTR = 5";
+                MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read()) {
+                    ret = (Convert.ToInt32(reader["AdminCount"]) > 0) ? true : false;
+                }
+                reader.Close();
+                con.Connection.Close();
+                return ret;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        } ///public int getUserFlag
+
+
+
+        public int getUserFlag(string usermail) {
+            int userFlag = 0;
+            try {
+                con.Connection.Open();
+                string sql = @"SELECT 
+                                    UserFlagID_MSTR
+                               FROM 
+                                    user_mstr
+                               WHERE 
+                                    UserMail_MSTR= @usermail";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
+                cmd.Parameters.AddWithValue("@usermail", usermail);
+                MySqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read()) {
+                    userFlag = Convert.ToInt32(reader["UserFlagID_MSTR"]);
+                }   
+                reader.Close();
+                con.Connection.Close();
+                return userFlag;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return userFlag;
+            }
+        } ///public int getUserFlag
+
+
         public bool LoginUser(string usermail, string userpassword) {
-            //userpassword = Hash256Password(userpassword, GenSalt())
-            bool isValid = false;
+
+            string salt = GenSalt();
+            string hashedPassword = Hash256Password(userpassword, salt);
+
+
             try {
                 con.Connection.Open();
 
                 string sql = @"SELECT 
                                     UserID_MSTR,
                                     UserMail_MSTR,
-                                    UserNickName_MSTR
+                                    UserNickName_MSTR,
+                                    UserTypeID_MSTR,
+                                    UserFlagID_MSTR,
+                                    PasswordSalt_MSTR,
+                                    PasswordPassword_MSTR
+                                    
                                FROM 
                                     user_mstr, password_mstr
                                WHERE 
                                     UserMail_MSTR= @usermail AND 
-                                    PasswordPassword_MSTR= @userpassword AND
                                     UserID_MSTR = PasswordUserID_MSTR";
 
+                                    //PasswordPassword_MSTR= @userpassword AND
                 MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
 
                 cmd.Parameters.AddWithValue("@usermail", usermail);
-                cmd.Parameters.AddWithValue("@userpassword", userpassword);
 
                 MySqlDataReader reader = cmd.ExecuteReader();
 
-                User user = new User();
+                string userName = "";
+                string userID = "";
+                int userType = 0;
+                int userFlag = 0;
+
 
                 if (reader.Read()) {
-                    /*loggedUID = reader["UserID_MSTR"].ToString();
-                    loggedUser = reader["UserNickName_MSTR"].ToString();*/
-                    user.id = reader["UserID_MSTR"].ToString();
-                    user.mail = reader["UserMail_MSTR"].ToString();
-                    user.nickname = reader["UserNickName_MSTR"].ToString();
-                    isValid = true;
+                    userName = reader["UserNickName_MSTR"].ToString();
+                    userID = reader["UserID_MSTR"].ToString();
+                    userType = Convert.ToInt32(reader["UserTypeID_MSTR"]);
+                    userFlag = Convert.ToInt32(reader["UserFlagID_MSTR"]);
+
+                    _mainWindow.setUser(userID, userName, userType, userFlag);
+
+                    string saltFromDb = reader["PasswordSalt_MSTR"].ToString();
+                    string passwordFromDb = reader["PasswordPassword_MSTR"].ToString();
+                    string hashedPasswordFromDb = Hash256Password(userpassword, saltFromDb);
+
+                    con.Connection.Close();
+                    return passwordFromDb == hashedPasswordFromDb;
                 }
                 reader.Close();
                 con.Connection.Close();
-
-                return isValid;
+                return false;
 
             } catch (System.Exception ex) {
                 MessageBox.Show(ex.Message);
@@ -62,20 +136,105 @@ namespace MotoLandAdmin {
 
         public string GenSalt() {
             byte[] salt = new byte[16];
-            //using (var rng = new System.Security.Cryptography.RNGCryptoServiceProvider()) {
-            using (var rng = RandomNumberGenerator.Create()) {
-                rng.GetBytes(salt);
+            using (var rand = RandomNumberGenerator.Create()) {
+                rand.GetBytes(salt);
             }
             return Convert.ToBase64String(salt);
         } ///public string Gensalt
 
         public string Hash256Password(string password, string salt) {
-            //byte[] saltBytes = Convert.FromBase64String(salt);
             using (var h256 = new HMACSHA256(Encoding.UTF8.GetBytes(salt))) {
                 byte[] h = h256.ComputeHash(Encoding.UTF8.GetBytes(password));
                 return Convert.ToBase64String(h);
             }
         } ///public string HashPassword
+
+
+        public bool ChangePassword(string userId, string oldPassword, string newPassword) {
+            try {
+                string oPassword = Hash256Password(oldPassword, GenSalt());
+                string nPassword = Hash256Password(newPassword, GenSalt());
+                string salt = GenSalt();
+
+                con.Connection.Open();
+                string sql = @"UPDATE 
+                                    password_mstr 
+                                SET 
+                                    PasswordPassword_MSTR = @newpassword,
+                                    PasswordSalt_MSTR = @salt
+                                WHERE 
+                                    PasswordUserID_MSTR = @userid AND
+                                    PasswordPassword_MSTR = @oldpassword";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
+                cmd.Parameters.AddWithValue("@newpassword", newPassword);
+                cmd.Parameters.AddWithValue("@oldpassword", oldPassword);
+                cmd.Parameters.AddWithValue("@salt", salt);
+                cmd.Parameters.AddWithValue("@userid", userId);
+                cmd.ExecuteNonQuery();
+                con.Connection.Close();
+                return true;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return false;
+            }
+        } ///public bool ChangePassword
+
+
+        public bool RegisterAdmin(string nickname, string password, string email, int typeid, int flagid) {
+            try {
+                con.Connection.Open();
+                string sql = @"INSERT INTO 
+                                    user_mstr (
+                                        UserNickName_MSTR, 
+                                        UserMail_MSTR, 
+                                        UserTypeID_MSTR, 
+                                        UserFlagID_MSTR) 
+                                VALUES (
+                                        @nickname,
+                                        @email,
+                                        @typeid,
+                                        @flagid)";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
+                cmd.Parameters.AddWithValue("@nickname", nickname);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@typeid", typeid);
+                cmd.Parameters.AddWithValue("@flagid", flagid);
+                cmd.ExecuteNonQuery();
+                string getLastIdSql = "SELECT LAST_INSERT_ID() AS LastID";
+                MySqlCommand getLastIdCmd = new MySqlCommand(getLastIdSql, con.Connection);
+                MySqlDataReader reader = getLastIdCmd.ExecuteReader();
+                int lastId = 0;
+                if (reader.Read()) {
+                    lastId = Convert.ToInt32(reader["LastID"]);
+                }
+                reader.Close();
+
+                string newPassword = @"INSERT INTO 
+                                            password_mstr (
+                                                PasswordUserID_MSTR, 
+                                                PasswordPassword_MSTR,  
+                                                PasswordSalt_MSTR) 
+                                            VALUES (
+                                                @userid,
+                                                @password,
+                                                @salt)";
+
+                MySqlCommand newPasswordCMD = new MySqlCommand(newPassword, con.Connection);
+                string salt = GenSalt();
+                string hashedPassword = Hash256Password(password, salt);
+                newPasswordCMD.Parameters.AddWithValue("@userid", lastId);
+                newPasswordCMD.Parameters.AddWithValue("@password", hashedPassword);
+                newPasswordCMD.Parameters.AddWithValue("@salt", salt);
+                newPasswordCMD.ExecuteNonQuery();
+                con.Connection.Close();
+                return true;
+            } catch (System.Exception) {
+                return false;
+            }
+        } ///public string RegisterAdmin
+
 
 
 

@@ -27,7 +27,6 @@ namespace MotoLandAdmin {
                 appHeight = 600;
                 _mainWindow.MainMenu.Visibility = Visibility.Visible;
                 _mainWindow.statusBar.Visibility = Visibility.Visible;
-                _mainWindow.userNameItem.Header = "User"; //user.nickname;
                 _mainWindow.MainFrame.Navigate(new StartPage(_mainWindow));
             }
 

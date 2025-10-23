@@ -11,6 +11,7 @@ namespace MotoLandAdmin {
         public string id;
         public string nickname;
         public string mail;
+        public int usertype;
 
 
         /*public User(int userId, string userNickname, string userMail) {
@@ -23,6 +24,7 @@ namespace MotoLandAdmin {
             this.id = "";
             this.nickname = "";
             this.mail = "";
+            this.usertype = 0;
         }
 
     }

@@ -38,8 +38,9 @@
                 <MenuItem Header="Rendelés kimutatás" />
                 <MenuItem Header="Ügyfél kimutatás" />
             </MenuItem>
-            <MenuItem Header="Felhasználó">
-                <MenuItem Header="Account" />
+            <MenuItem Header="Felhasználók" Name="usersMainItem">
+                <MenuItem Header="Karbantartás" />
+                <MenuItem Header="Új munkatárs" />
                 <Separator />
             </MenuItem>
             <MenuItem Header="User" Name="userNameItem" HorizontalAlignment="Right">

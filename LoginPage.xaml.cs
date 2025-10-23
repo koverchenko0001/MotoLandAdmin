@@ -1,4 +1,5 @@
-﻿using Mysqlx.Notice;
+﻿using Mysqlx.Connection;
+using Mysqlx.Notice;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -20,37 +21,32 @@ namespace MotoLandAdmin {
     public partial class LoginPage : Page {
 
         private MainWindow _mainWindow;
-        private CommandCom _command;
-        private Boolean loginFieldsAreEmpty = true;
 
 
         public LoginPage() {
             InitializeComponent();
             _mainWindow = (MainWindow)Application.Current.MainWindow;
+            CommandCom _command;
+            _command = new CommandCom();
+            bool isAdminExist = _command.adminExist();
+            addNewUserBtn.IsEnabled = !isAdminExist;
+            
+            userMailTB.IsEnabled = userPasswordPB.IsEnabled = isAdminExist;
         }
 
 
-        private void setNewDimensions() {
-            Application.Current.MainWindow.Height = 600;
-            Application.Current.MainWindow.Width = 1000;
-            Application.Current.MainWindow.ResizeMode = ResizeMode.CanResize;
-
-            _mainWindow.MainFrame.Navigate(new MenuPage(_mainWindow));
-        } ///private void setNewDimensions
-
-
         private void userMailTB_TextChanged(object sender, TextChangedEventArgs e) {
-            //checkFieldsForEmpty();
+            checkFieldsForEmpty();
         } ///private void userMailTB_TextChanged
 
 
-        private void userPasswordPB_PasswordChanged(object sender, RoutedEventArgs e) {
-            //checkFieldsForEmpty();
+        private void UserPasswordPB_PasswordChanged(object sender, RoutedEventArgs e) {
+            checkFieldsForEmpty();
         } ///private void userPasswordPB_PasswordChanged
 
 
         private void checkFieldsForEmpty() {
-            if (string.IsNullOrWhiteSpace(userMailTB.Text) || string.IsNullOrWhiteSpace(userPasswordPB.Password)) {
+            if (string.IsNullOrEmpty(userMailTB.Text) || string.IsNullOrEmpty(userPasswordPB.Password)) {
                 loginUserBtn.IsEnabled = false;
             } else {
                 loginUserBtn.IsEnabled = true;
@@ -59,19 +55,17 @@ namespace MotoLandAdmin {
 
 
         private void loginUserBtn_Click(object sender, RoutedEventArgs e) {
-            try {
-                _command = new CommandCom();
-                if (_command.LoginUser(userMailTB.Text, userPasswordPB.Password)) {
-                    Core cs = new Core();
-                    cs.setNewDimensions("menu");
-                } else {
-                    MessageBox.Show("Hibás bejelentkezési adatok!\nCsak mondom!", "Bejelentkezési hiba!");
-                    resetLoginFields();
-                }
-            } catch (System.Exception ex) {
+            CommandCom _command;
+            _command = new CommandCom();
 
-                MessageBox.Show(ex.Message, "Error");
+            if (_command.LoginUser(userMailTB.Text, userPasswordPB.Password)) {
+                Core cs = new Core();
+                cs.setNewDimensions("menu");
+            } else {
+                MessageBox.Show("Hibás bejelentkezési adatok!\nCsak mondom!", "Bejelentkezési hiba!", MessageBoxButton.OK, MessageBoxImage.Error);
+                resetLoginFields();
             }
+
         } ///private void loginUserBtn_Click
 
 
@@ -80,6 +74,10 @@ namespace MotoLandAdmin {
             userPasswordPB.Clear();
             userMailTB.Focus();
         } ///private void resetLoginFields
+
+        private void addNewUser_Click(object sender, RoutedEventArgs e) {
+            _mainWindow.MainFrame.Navigate(new FirstAdminPage());
+        } ///private void addNewUser_Click
 
     }
 }
