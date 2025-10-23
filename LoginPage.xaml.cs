@@ -46,11 +46,11 @@ namespace MotoLandAdmin {
 
 
         private void checkFieldsForEmpty() {
-            if (string.IsNullOrEmpty(userMailTB.Text) || string.IsNullOrEmpty(userPasswordPB.Password)) {
+            /*if (string.IsNullOrEmpty(userMailTB.Text) || string.IsNullOrEmpty(userPasswordPB.Password)) {
                 loginUserBtn.IsEnabled = false;
             } else {
                 loginUserBtn.IsEnabled = true;
-            }
+            }*/
         } ///private void checkFieldsForEmpty
 
 

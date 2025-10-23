@@ -62,3 +62,5 @@ C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\AccountSetupPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\AccountSetupPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\FirstAdminPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\FirstAdminPage.baml
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MyAccountPage.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MyAccountPage.baml
