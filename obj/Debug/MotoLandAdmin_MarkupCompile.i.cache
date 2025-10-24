@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\istva\Desktop\C#\MotoLandAdmin\App.xaml
-81583631049
-1-1456238986
-17-1365080854
+71247340519
+11890611836
+16-25751504
 33467730923
-AccountSetupPage.xaml;ChangePasswordPage.xaml;FirstAdminPage.xaml;LoginPage.xaml;MainWindow.xaml;MyAccountPage.xaml;PropertiesPage.xaml;StartPage.xaml;
+ChangePasswordPage.xaml;FirstAdminPage.xaml;HomePage.xaml;LoginPage.xaml;MainWindow.xaml;MyAccountPage.xaml;PropertiesPage.xaml;
 
-True
+False
 

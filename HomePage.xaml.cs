@@ -15,11 +15,17 @@ using System.Windows.Shapes;
 
 namespace MotoLandAdmin {
     /// <summary>
-    /// Interaction logic for StartPage.xaml
+    /// Interaction logic for HomePage.xaml
     /// </summary>
-    public partial class StartPage : Page {
-        public StartPage(MainWindow mainWindow) {
+    public partial class HomePage : Page {
+
+        MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
+
+        public HomePage() {
             InitializeComponent();
+            _mainWindow.statusBarText.Text = "ESC-Kilépés";
         }
+
+
     }
 }

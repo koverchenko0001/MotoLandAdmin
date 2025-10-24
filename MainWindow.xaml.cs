@@ -27,6 +27,8 @@ namespace MotoLandAdmin {
         public int usertype = 0;
         public int userFlag = 0;
 
+        public string activPageName = "";
+
 
         public MainWindow() {
             InitializeComponent();
@@ -57,12 +59,13 @@ namespace MotoLandAdmin {
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
             Core cs = new Core();
             if (sender is MenuItem btn) {
+                activPageName = btn.Name;
                 switch (btn.Name) {
                     case "Exit":
                         Close();
                         break;
                     case "accountSetup":
-                        MainFrame.Navigate(new AccountSetupPage());
+                        MainFrame.Navigate(new MyAccountPage());
                         break;
                     case "properties":
                         MainFrame.Navigate(new PropertiesPage());
@@ -77,7 +80,33 @@ namespace MotoLandAdmin {
                         break;
                 }
             }
-        } ///private void MenuItem_Click
+        }
+
+        private void Window_KeyUp(object sender, KeyEventArgs e) {
+
+            if (activPageName == "HomePage") {
+                if (e.Key == Key.Escape) {
+                    Close();
+                }
+            }
+
+            if (activPageName == "accountSetup") { 
+                MyAccountPage myAccountPage = new MyAccountPage();
+                if (e.Key == Key.Escape) {
+                    myAccountPage.cancelProfil();
+                }
+                if (e.Key == Key.F2) {
+                    myAccountPage.saveProfil();
+                }
+                    
+            }
+
+
+                    
+                        
+
+        }
+        ///private void MenuItem_Click
 
 
 

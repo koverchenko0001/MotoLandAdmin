@@ -1,7 +1,6 @@
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.csproj.AssemblyReference.cache
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\LoginPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MainWindow.g.cs
-C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MenuPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\App.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin_MarkupCompile.cache
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin_MarkupCompile.lref
@@ -42,7 +41,6 @@ C:\Users\istva\Desktop\C#\MotoLandAdmin\bin\Debug\System.Runtime.CompilerService
 C:\Users\istva\Desktop\C#\MotoLandAdmin\bin\Debug\System.Threading.Tasks.Extensions.xml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\LoginPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MainWindow.baml
-C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MenuPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.g.resources
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.Properties.Resources.resources
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.csproj.GenerateResource.cache
@@ -52,15 +50,13 @@ C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.exe
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.pdb
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin.exe.config
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MotoLandAdmin_Content.g.cs
-C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\StartPage.g.cs
-C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\StartPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\ChangePasswordPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\PropertiesPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\ChangePasswordPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\PropertiesPage.baml
-C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\AccountSetupPage.g.cs
-C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\AccountSetupPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\FirstAdminPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\FirstAdminPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MyAccountPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MyAccountPage.baml
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\HomePage.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\HomePage.baml

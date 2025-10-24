@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Numerics;
 using System.Security.Cryptography;
@@ -184,19 +185,22 @@ namespace MotoLandAdmin {
         public bool RegisterAdmin(string nickname, string password, string email, int typeid, int flagid) {
             try {
                 con.Connection.Open();
-                string sql = @"INSERT INTO 
-                                    user_mstr (
-                                        UserNickName_MSTR, 
-                                        UserMail_MSTR, 
-                                        UserTypeID_MSTR, 
-                                        UserFlagID_MSTR) 
-                                VALUES (
-                                        @nickname,
-                                        @email,
-                                        @typeid,
-                                        @flagid)";
+                string sql = "";
+                MySqlCommand cmd;
+                /// USER_MSTR TABLE INSERT
+                sql = @"INSERT INTO 
+                            user_mstr (
+                                UserNickName_MSTR, 
+                                UserMail_MSTR, 
+                                UserTypeID_MSTR, 
+                                UserFlagID_MSTR) 
+                        VALUES (
+                                @nickname,
+                                @email,
+                                @typeid,
+                                @flagid)";
 
-                MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
+                cmd = new MySqlCommand(sql, con.Connection);
                 cmd.Parameters.AddWithValue("@nickname", nickname);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@typeid", typeid);
@@ -211,32 +215,77 @@ namespace MotoLandAdmin {
                 }
                 reader.Close();
 
-                string newPassword = @"INSERT INTO 
-                                            password_mstr (
-                                                PasswordUserID_MSTR, 
-                                                PasswordPassword_MSTR,  
-                                                PasswordSalt_MSTR) 
-                                            VALUES (
-                                                @userid,
-                                                @password,
-                                                @salt)";
 
-                MySqlCommand newPasswordCMD = new MySqlCommand(newPassword, con.Connection);
+
+
+                /// USER_DET TABLE INSERT
+                sql = @"INSERT INTO 
+                            user_det (
+                                UserMSTRID_DET, 
+                                UserFirstName_DET, 
+                                UserMiddleName_DET, 
+                                UserLastName_DET,
+                                UserGenderID_DET,
+                                UserPhone_DET,
+                                UserCountryID_DET,
+                                UserPostCode_DET,
+                                UserCityID_DET,
+                                UserStreet_DET,
+                                UserAddress_DET,
+                                UserMotherName_DET,
+                                UserBirthPlaceID_DET,
+                                UserBirthDate_DET,
+                                UserLastModifiedDate_DET) 
+                        VALUES (
+                                @uid,
+                                '',
+                                '',
+                                '',
+                                0,
+                                '',
+                                0,
+                                '',
+                                0,
+                                '',
+                                '',
+                                '',
+                                0,
+                                '1970-01-01',
+                                @lastmodified)";
+
+                cmd = new MySqlCommand(sql, con.Connection);
+                cmd.Parameters.AddWithValue("@uid", lastId);
+                cmd.Parameters.AddWithValue("@lastmodified", DateTime.Now);
+                cmd.ExecuteNonQuery();
+
+
+
+
+
+                /// PASSWORD_MSTR TABLE INSERT
+                sql = @"INSERT INTO 
+                            password_mstr (
+                                PasswordUserID_MSTR, 
+                                PasswordPassword_MSTR,  
+                                PasswordSalt_MSTR) 
+                            VALUES (
+                                @userid,
+                                @password,
+                                @salt)";
+
+                cmd = new MySqlCommand(sql, con.Connection);
                 string salt = GenSalt();
                 string hashedPassword = Hash256Password(password, salt);
-                newPasswordCMD.Parameters.AddWithValue("@userid", lastId);
-                newPasswordCMD.Parameters.AddWithValue("@password", hashedPassword);
-                newPasswordCMD.Parameters.AddWithValue("@salt", salt);
-                newPasswordCMD.ExecuteNonQuery();
+                cmd.Parameters.AddWithValue("@userid", lastId);
+                cmd.Parameters.AddWithValue("@password", hashedPassword);
+                cmd.Parameters.AddWithValue("@salt", salt);
+                cmd.ExecuteNonQuery();
                 con.Connection.Close();
                 return true;
             } catch (System.Exception) {
                 return false;
             }
         } ///public string RegisterAdmin
-
-
-
 
         public string RegisterUser(string username, string password, string fullname, string email) {
             try {
@@ -261,6 +310,37 @@ namespace MotoLandAdmin {
             }
 
         } ///public string RegisterUser
+
+        public DataTable getTableFromDB(string tableName) {
+            try {
+                con.Connection.Open();
+                string sql = "SELECT * FROM " + tableName;
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con.Connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                con.Connection.Close();
+                return dt;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        } /// public DataTable getTableFromDB
+
+        public DataTable getUserDataByID(string uid) {
+            try {
+                con.Connection.Open();
+                string sql = "SELECT * FROM user_mstr, user_det WHERE UserID_MSTR = " + uid + " AND UserMSTRID_DET = UserID_MSTR";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con.Connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                con.Connection.Close();
+                return dt;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        } /// public DataTable getUserTypesFromTable
+
 
         public DataView GetAllUser() {
             try {
@@ -302,28 +382,61 @@ namespace MotoLandAdmin {
         } ///public void DeleteUser
 
 
-        public void UpdateUser(object Row) {
+        public void updateUserProfile(string uid, string nickname, string firstname, string middlename, string lastname, int birthplaceid, DateTime     
+                                       birthdate, int genderid, string email, string phone, string motherName, int countryID, int cityid, string street, 
+                                       string address, string postcode) {
             try {
                 con.Connection.Open();
-
-                string sql = "UPDATE `users` SET `UserName`=@username,`Password`=@password,`FullName`=@fullname,`Email`=@email,`RegDate`=@date WHERE Id = @id";
+                
+                string sql = @"UPDATE
+                                    user_mstr, user_det 
+                                SET 
+                                    UserNickName_MSTR = @nickname,
+                                    UserFirstName_DET = @firstname,
+                                    UserMiddleName_DET = @middlename,
+                                    UserLastName_DET = @lastname,
+                                    UserBirthPlaceID_DET = @birthplaceid,
+                                    UserBirthDate_DET = @birthdate,
+                                    UserGenderID_DET = @genderid,
+                                    UserMail_MSTR = @email,
+                                    UserPhone_DET = @phone,
+                                    UserMotherName_DET = @mothername,
+                                    UserCountryID_DET = @countryid,
+                                    UserCityID_DET = @cityid,
+                                    UserStreet_DET = @street,
+                                    UserAddress_DET = @address,
+                                    UserPostCode_DET = @postcode,
+                                    UserLastModifiedDate_DET = @moddate 
+                                WHERE
+                                    UserID_MSTR = @uid AND
+                                    UserMSTRID_DET = UserID_MSTR";
 
                 MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
 
-                var usr = Row.GetType().GetProperties();
-
-                cmd.Parameters.AddWithValue("@username", usr[1].GetValue(Row));
-                cmd.Parameters.AddWithValue("@password", usr[2].GetValue(Row));
-                cmd.Parameters.AddWithValue("@fullname", usr[3].GetValue(Row));
-                cmd.Parameters.AddWithValue("@email", usr[4].GetValue(Row));
-                cmd.Parameters.AddWithValue("@date", usr[5].GetValue(Row));
-                cmd.Parameters.AddWithValue("@id", usr[0].GetValue(Row));
+                cmd.Parameters.AddWithValue("@uid", uid);
+                cmd.Parameters.AddWithValue("@nickname", nickname);
+                cmd.Parameters.AddWithValue("@firstname", firstname);
+                cmd.Parameters.AddWithValue("@middlename", middlename);
+                cmd.Parameters.AddWithValue("@lastname", lastname);
+                cmd.Parameters.AddWithValue("@birthplaceid", birthplaceid);
+                cmd.Parameters.AddWithValue("@birthdate", birthdate);
+                cmd.Parameters.AddWithValue("@genderid", genderid);
+                cmd.Parameters.AddWithValue("@email", email);
+                cmd.Parameters.AddWithValue("@phone", phone);
+                cmd.Parameters.AddWithValue("@mothername", motherName);
+                cmd.Parameters.AddWithValue("@countryid", countryID);
+                cmd.Parameters.AddWithValue("@cityid", cityid);
+                cmd.Parameters.AddWithValue("@street", street);
+                cmd.Parameters.AddWithValue("@address", address);
+                cmd.Parameters.AddWithValue("@postcode", postcode);
+                cmd.Parameters.AddWithValue("@moddate", DateTime.Now);
 
                 cmd.ExecuteNonQuery();
 
                 con.Connection.Close();
             } catch (System.Exception ex) {
                 MessageBox.Show(ex.Message);
+                con.Connection.Close();
             }
 
         } ///public void UpdateUser
