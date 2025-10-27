@@ -1,0 +1,144 @@
+﻿<Page x:Class="MotoLandAdmin.UserMaintenancePage"
+      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+      xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+      xmlns:local="clr-namespace:MotoLandAdmin"
+      mc:Ignorable="d" 
+      d:DesignHeight="450" d:DesignWidth="800"
+      Title="UserMaintenancePage">
+
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="8*"/>
+            <RowDefinition Height="50"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="0">
+            <Border 
+                Background="#FF667566"/>
+            
+            <TextBlock 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                FontSize="20" 
+                FontWeight="Bold"
+                Height="23" 
+                Margin="10,0,0,0"
+                Text="Felhasználók" 
+                Foreground="#FFE2D8D8"/>
+
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <DataGrid x:Name="userDataGrid" 
+                  AutoGenerateColumns="False"
+                  CanUserAddRows="False"
+                  Margin="5,5,5,5"
+                  Width="Auto"
+                  Height="Auto" 
+                  SelectionMode="Single" CellEditEnding="userDataGrid_CellEditEnding" KeyUp="userDataGrid_KeyUp">
+
+
+                <DataGrid.Columns>
+                    
+                    <DataGridTextColumn Header="UID" Binding="{Binding UserID_MSTR}"/>
+                    <DataGridTextColumn Header="Felhasználónév" Binding="{Binding UserNickName_MSTR}"/>
+                    <DataGridTextColumn Header="Vezetéknév" Binding="{Binding UserFirstName_DET}"/>
+                    <DataGridTextColumn Header="Keresztnév" Binding="{Binding UserMiddleName_DET}"/>
+                    <DataGridTextColumn Header="Keresztnév" Binding="{Binding UserLastName_DET}"/>
+                    <DataGridComboBoxColumn x:Name="genderCB" Header="Nem" Width="70" TextBinding="{Binding GenderGender_MSTR}"/>
+                    <DataGridTextColumn Header="Telefonszám" Binding="{Binding UserPhone_DET}"/>
+                    <DataGridComboBoxColumn x:Name="countryCB" Header="Ország" Width="150" TextBinding="{Binding CountriesCountry_MSTR}"/>
+                    <DataGridTextColumn Header="Irányítószám" Binding="{Binding UserPostCode_DET}"/>
+                    <DataGridComboBoxColumn x:Name="cityCB" Header="Város" Width="150" TextBinding="{Binding CitiesCity_MSTR}"/>
+                    <DataGridTextColumn Header="Utca" Binding="{Binding UserStreet_DET}"/>
+                    <DataGridTextColumn Header="Házszám" Binding="{Binding UserAddress_DET}"/>
+                    <DataGridTextColumn Header="Anyja neve" Binding="{Binding UserMotherName_DET}"/>
+                    <DataGridComboBoxColumn x:Name="birthPlaceCityCB" Header="Város" Width="150" TextBinding="{Binding CitiesCity_MSTR}"/>
+                    <DataGridTextColumn Header="Születési idő" Binding="{Binding UserBirthDate_DET, StringFormat=\{0:yyyy.MM.dd\}}"/>
+                </DataGrid.Columns>
+            </DataGrid>
+
+        </Grid>
+
+        
+        <Grid Grid.Row="2">
+                
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="75"/>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="65"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Button
+                        Name="usersSave"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Width="70"
+                        Height="25"
+                        Content="Mentés"
+                        Margin="5,0,0,5"
+                        Click="usersSave_Click"/>
+                </Grid>
+
+                <Grid Grid.Column="1">
+                    <Button
+                        Name="usersCancel"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Width="70"
+                        Height="25"
+                        Content="Kilépés"
+                        Margin="5,0,0,5"
+                        Click="usersCancel_Click"/>
+                </Grid>
+                
+                <Grid Grid.Column="3">
+                    <Button
+                        Name="usersAdd"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Width="60"
+                        Height="25"
+                        Content="Új"
+                        Margin="0,0,0,0"                        
+                        Click="usersAdd_Click"/>
+                </Grid>
+                <Grid Grid.Column="4">
+                    <Button
+                        Name="usersRemove"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Width="60"
+                        Height="25"
+                        Content="Törlés"
+                        Margin="0,0,5,0"                        
+                        />
+                </Grid>
+                <Grid Grid.Column="5">
+                    <Button
+                        Name="usersDetails"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Width="60"
+                        Height="25"
+                        Content="Részletek"
+                        Margin="0,0,0,0"                        
+                        />
+                </Grid>
+            
+            </Grid>
+        </Grid>
+
+        
+    </Grid>
+</Page>

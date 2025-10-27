@@ -8,6 +8,6 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("motolanddb.sql")]
+[assembly: System.Windows.Resources.AssemblyAssociatedContentFileAttribute("motoland.sql")]
 
 

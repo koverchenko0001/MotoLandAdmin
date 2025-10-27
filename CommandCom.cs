@@ -341,12 +341,76 @@ namespace MotoLandAdmin {
             }
         } /// public DataTable getUserTypesFromTable
 
+        public DataTable getCountries() {
+            try {
+                con.Connection.Open();
+                string sql = "SELECT * FROM countries_mstr ORDER BY CountriesCountry_MSTR ASC";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con.Connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                con.Connection.Close();
+                return dt;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        public DataTable getCities() {
+            try {
+                con.Connection.Open();
+                string sql = "SELECT * FROM cities_mstr ORDER BY CitiesCity_MSTR ASC";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con.Connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                con.Connection.Close();
+                return dt;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
+        public DataTable getGender() {
+            try {
+                con.Connection.Open();
+                string sql = "SELECT * FROM gender_mstr ORDER BY GenderGender_MSTR ASC";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con.Connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                con.Connection.Close();
+                return dt;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        }
+
 
         public DataView GetAllUser() {
             try {
                 con.Connection.Open();
 
-                string sql = "SELECT * FROM users";
+                string sql = @"SELECT 
+                                    * 
+                                FROM 
+                                    user_mstr, 
+                                    user_det, 
+                                    gender_mstr, 
+                                    countries_mstr, 
+                                    flag_mstr, 
+                                    usertype_mstr, 
+                                    cities_mstr 
+                                WHERE
+                                    UserID_MSTR = UserMSTRID_DET AND
+                                    user_mstr.UserTypeID_MSTR = usertype_mstr.UserTypeID_MSTR AND
+                                    FlagID_MSTR = UserFlagID_MSTR AND
+                                    UserGenderID_DET = GenderID_MSTR AND 
+                                    UserCountryID_DET = CountriesID_MSTR AND 
+                                    UserCityID_DET = CitiesID_MSTR AND
+                                    UserBirthPlaceID_DET = CitiesID_MSTR
+                                ORDER BY
+                                    UserFirstName_DET ASC";
 
                 MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con.Connection);
 
@@ -441,6 +505,61 @@ namespace MotoLandAdmin {
 
         } ///public void UpdateUser
 
+        public void UpdateUser(object Row) {
+            try {
+                con.Connection.Open();
+
+                string sql = @"UPDATE 
+                                    user_mstr, user_det
+                                SET 
+                                    UserNickName_MSTR = @unickname,
+                                    UserFirstName_DET = @ufirstname,
+                                    UserMiddleName_DET = @umiddlename,
+                                    UserLastName_DET = @ulastname,
+                                    UserGenderID_DET = @ugender,
+                                    UserPhone_DET = @uphone,
+                                    UserCountryID_DET = @ucountry,
+                                    UserPostCode_DET = @upostcode,
+                                    UserCityID_DET = @ucity,
+                                    UserStreet_DET = @ustreet,
+                                    UserAddress_DET = @uaddress,
+                                    UserMotherName_DET = @umothername,
+                                    UserBirthPlaceID_DET = @ubirthplace,
+                                    UserBirthDate_DET = @ubirthdate,
+                                    UserLastModifiedDate_DET = @ulastmodifieddate
+                                WHERE  
+                                    UserID_MSTR = @uid AND
+                                    UserID_MSTR = UserMSTRID_DET";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
+
+                var usr = Row.GetType().GetProperties();
+
+                cmd.Parameters.AddWithValue("@uid", usr[0].GetValue(Row));
+                cmd.Parameters.AddWithValue("@unickname", usr[1].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ufirstname", usr[2].GetValue(Row));
+                cmd.Parameters.AddWithValue("@umiddlename", usr[3].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ulastname", usr[4].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ugender", usr[5].GetValue(Row));
+                cmd.Parameters.AddWithValue("@uphone", usr[6].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ucountry", usr[7].GetValue(Row));
+                cmd.Parameters.AddWithValue("@upostcode", usr[8].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ucity", usr[9].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ustreet", usr[10].GetValue(Row));
+                cmd.Parameters.AddWithValue("@uaddress", usr[11].GetValue(Row));
+                cmd.Parameters.AddWithValue("@umothername", usr[12].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ubirthplace", usr[13].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ubirthdate", usr[14].GetValue(Row));
+                cmd.Parameters.AddWithValue("@ulastmodifieddate", DateTime.Now);
+
+                cmd.ExecuteNonQuery();
+
+                con.Connection.Close();
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message+ " ittttttt");
+            }
+
+        }
 
 
     } ///internal class CommandCom

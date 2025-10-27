@@ -64,6 +64,10 @@ namespace MotoLandAdmin {
                     case "Exit":
                         Close();
                         break;
+                    case "userMaintenance":
+                        userMaintenance.IsEnabled = false;
+                        MainFrame.Navigate(new UserMaintenancePage());
+                        break;
                     case "accountSetup":
                         MainFrame.Navigate(new MyAccountPage());
                         break;
@@ -80,7 +84,7 @@ namespace MotoLandAdmin {
                         break;
                 }
             }
-        }
+        } /// MenuItem_Click
 
         private void Window_KeyUp(object sender, KeyEventArgs e) {
 
@@ -90,6 +94,10 @@ namespace MotoLandAdmin {
                 }
             }
 
+            if (activPageName == "userMaintenance") {
+            }
+
+
             if (activPageName == "accountSetup") { 
                 MyAccountPage myAccountPage = new MyAccountPage();
                 if (e.Key == Key.Escape) {
@@ -98,15 +106,8 @@ namespace MotoLandAdmin {
                 if (e.Key == Key.F2) {
                     myAccountPage.saveProfil();
                 }
-                    
-            }
-
-
-                    
-                        
-
-        }
-        ///private void MenuItem_Click
+            }   
+        } /// Window_KeyUp 
 
 
 

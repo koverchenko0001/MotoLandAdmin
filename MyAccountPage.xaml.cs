@@ -89,22 +89,23 @@ namespace MotoLandAdmin {
                 DateTime? birthDate = birthDateDP.SelectedDate;
 
                 commandCom.updateUserProfile(
-                                _mainWindow.uid,
-                                nickNameTB.Text,
-                                firstNameTB.Text,
-                                middleNameTB.Text,
-                                lastNameTB.Text,
-                                Convert.ToInt32(birthPlaceCB.SelectedValue),
-                                birthDate.Value,
-                                Convert.ToInt32(genderCB.SelectedValue),
-                                emailTB.Text,
-                                phoneTB.Text,
-                                motherNameTB.Text,
-                                Convert.ToInt32(addressCountriesCB.SelectedValue),
-                                Convert.ToInt32(addressCitiesCB.SelectedValue),
-                                addressStreetTB.Text,
-                                addressAddressTB.Text,
-                                addressPostCodeTB.Text);
+                    _mainWindow.uid,
+                    nickNameTB.Text,
+                    firstNameTB.Text,
+                    middleNameTB.Text,
+                    lastNameTB.Text,
+                    Convert.ToInt32(birthPlaceCB.SelectedValue),
+                    birthDate.Value,
+                    Convert.ToInt32(genderCB.SelectedValue),
+                    emailTB.Text,
+                    phoneTB.Text,
+                    motherNameTB.Text,
+                    Convert.ToInt32(addressCountriesCB.SelectedValue),
+                    Convert.ToInt32(addressCitiesCB.SelectedValue),
+                    addressStreetTB.Text,
+                    addressAddressTB.Text,
+                    addressPostCodeTB.Text);
+
                 _mainWindow.activPageName = "HomePage";
                 _mainWindow.MainFrame.Navigate(new HomePage());
             }            

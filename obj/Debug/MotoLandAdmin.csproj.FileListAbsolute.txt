@@ -60,3 +60,7 @@ C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MyAccountPage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\MyAccountPage.baml
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\HomePage.g.cs
 C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\HomePage.baml
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\UserMaintenancePage.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\UserMaintenancePage.baml
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\NewUserWindow.g.cs
+C:\Users\istva\Desktop\C#\MotoLandAdmin\obj\Debug\NewUserWindow.baml

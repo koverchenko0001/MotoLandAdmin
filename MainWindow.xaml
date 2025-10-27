@@ -27,9 +27,8 @@
             </MenuItem>
 
             <MenuItem Header="Karbantartás">
-                <MenuItem Header="Felhasználók" />
+                <MenuItem Header="Felhasználók" Name="userMaintenance" Click="MenuItem_Click"/>
                 <MenuItem Header="Termék" />
-                <MenuItem Header="Segéd táblák" />
                 <MenuItem Header="Rendelés" />
                 <Separator/>
                 <MenuItem Header="Beállítások" />
