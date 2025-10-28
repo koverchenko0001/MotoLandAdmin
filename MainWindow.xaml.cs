@@ -28,6 +28,7 @@ namespace MotoLandAdmin {
         public int userFlag = 0;
 
         public string activPageName = "";
+        public MenuItem activPageItem = null;
 
 
         public MainWindow() {
@@ -35,6 +36,10 @@ namespace MotoLandAdmin {
             MainFrame.Navigate(new LoginPage());
         }
 
+        public void resetActiveItem() {
+            if (activPageItem != null)
+                activPageItem.IsEnabled = true;
+        }
 
         public void setUser(string userId, string userName, int usertype, int userFlag) {
             this.uid = userId;
@@ -57,15 +62,20 @@ namespace MotoLandAdmin {
         } ///private void Window_Closing
 
         private void MenuItem_Click(object sender, RoutedEventArgs e) {
+
             Core cs = new Core();
             if (sender is MenuItem btn) {
+                resetActiveItem();
+
                 activPageName = btn.Name;
+                activPageItem = btn;
+                activPageItem.IsEnabled = false;
+
                 switch (btn.Name) {
                     case "Exit":
                         Close();
                         break;
                     case "userMaintenance":
-                        userMaintenance.IsEnabled = false;
                         MainFrame.Navigate(new UserMaintenancePage());
                         break;
                     case "accountSetup":
@@ -85,6 +95,8 @@ namespace MotoLandAdmin {
                 }
             }
         } /// MenuItem_Click
+
+
 
         private void Window_KeyUp(object sender, KeyEventArgs e) {
 

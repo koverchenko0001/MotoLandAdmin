@@ -5,19 +5,51 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:MotoLandAdmin"
         mc:Ignorable="d"
-        Title="Új felhasználó" Height="450" Width="300" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" KeyUp="Window_KeyUp" WindowStyle="ToolWindow">
+        Title="Új felhasználó" Height="670" Width="350" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" KeyUp="Window_KeyUp" WindowStyle="ToolWindow">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="50"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="35"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="20"/>
         </Grid.RowDefinitions>
+        
         <Grid Grid.Row="0">
-            <TextBlock
-                Text="Regisztráció"
-                VerticalAlignment="Center"
-                Margin="10"/>
+            <Border 
+                Background="#FF667566"/>
+
+            <TextBlock 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                FontSize="20" 
+                FontWeight="Bold"
+                Height="23" 
+                Margin="10,0,0,0"
+                Text="Regisztráció" 
+                Foreground="#FFE2D8D8"/>
+
+
         </Grid>
 
         <Grid Grid.Row="1">
@@ -26,7 +58,7 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="2*"/>
                 </Grid.ColumnDefinitions>
-                
+
                 <Grid Grid.Column="0">
                     <TextBlock
                         Text="Felhasználónév:"
@@ -44,12 +76,585 @@
                         HorizontalAlignment="Left"
                         Margin="5,0,0,0"/>
                 </Grid>
-                
+
             </Grid>
-            
-            
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="E-mail cím:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userEmailTB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Jelszó:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Bottom"
+                        Margin="0,0,0,2"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <PasswordBox
+                        Name="userPassword1PB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="4">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Jelszó ellenőrzés:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,5,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <PasswordBox
+                        Name="userPassword2PB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="5,5,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="5">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Jogosultsági szint:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,2,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ComboBox
+                        Name="userTypeCB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,5,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+        
+        
+        <Grid Grid.Row="6">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Státusz:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Top"
+                        Margin="0,7,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ComboBox
+                        Name="userFlagCB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Left"
+                        Margin="5,5,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="7" Height="10"/>
+
+
+
+
+        <Grid Grid.Row="8">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Vezetéknév:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userFirstNameTB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="9">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Keresztnév:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userMiddleNameTB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="10">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Keresztnév:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userLastNameTB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="11">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Nem:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ComboBox
+                        Name="userGenderCB"
+                        Width="100"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="12">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Telefon:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userPhoneTB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
         </Grid>
 
         
+        <Grid Grid.Row="13">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Ország:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ComboBox
+                        Name="userCountryCB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        
+        <Grid Grid.Row="14">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Irányítószám:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userPostCodeTB"
+                        Width="100"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        
+        <Grid Grid.Row="15">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Város:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ComboBox
+                        Name="userCityCB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        
+        <Grid Grid.Row="16">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Utca:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userStreetTB"
+                        Width="150"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        
+        <Grid Grid.Row="17">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Házszám/emelet:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userAddressTB"
+                        Width="100"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        
+        <Grid Grid.Row="18">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Anyja neve:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userMotherNameTB"
+                        Width="100"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        
+        <Grid Grid.Row="19">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Születési hely:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <ComboBox
+                        Name="userBirthPlaceCB"
+                        Width="100"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        
+        <Grid Grid.Row="20">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="2*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <TextBlock
+                        Text="Születési idő:"
+                        HorizontalAlignment="Right"
+                        VerticalAlignment="Center"
+                        Margin="0,0,0,0"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <TextBox
+                        Name="userBirthDateTB"
+                        Width="100"
+                        Height="20"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="21">
+            <Border 
+                Background="#FF667566"/>
+        </Grid>
+
+
+        <Grid Grid.Row="22">
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Grid Grid.Column="0">
+                    <Button
+                        Name="newUserSave"
+                        Content="Regisztráció"
+                        Width="100"
+                        Height="20"
+                        FontSize="12"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Right"
+                        Margin="0,0,5,0"
+                        Click="newUserSave_Click"/>
+
+                </Grid>
+                <Grid Grid.Column="1">
+                    <Button
+                        Name="newUserCancel"
+                        Content="Kilépés"
+                        Width="100"
+                        Height="20"
+                        FontSize="12"
+                        VerticalAlignment="Center"
+                        HorizontalAlignment="Left"
+                        Margin="5,0,0,0"
+                        Click="newUserCancel_Click"/>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+
+
+
+        <Grid Grid.Row="23">
+            
+            <StatusBar VerticalAlignment="Bottom" Height="22" Name="newUserStatusBar">
+                <StatusBarItem>
+                    <TextBlock x:Name="newUserStatusBarText" Text="ESC-Kilépés   F2-Mentés" FontSize="10" Margin="5,0,0,2"/>
+                </StatusBarItem>
+            </StatusBar>
+            
+        </Grid>
+
     </Grid>
 </Window>

@@ -117,7 +117,9 @@ namespace MotoLandAdmin {
 
         public void cancelProfil() {
             _mainWindow.activPageName = "HomePage";
+            _mainWindow.resetActiveItem();
             _mainWindow.MainFrame.Navigate(new HomePage());
+            
         }
     }
 

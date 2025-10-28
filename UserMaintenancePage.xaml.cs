@@ -67,7 +67,7 @@ namespace MotoLandAdmin {
             isChanged = false;
             _mainWindow.activPageName = "HomePage";
             _mainWindow.MainFrame.Navigate(new HomePage());
-            _mainWindow.userMaintenance.IsEnabled = true;
+            _mainWindow.resetActiveItem();
         }
 
         private void saveUserMaintenancePage() { 

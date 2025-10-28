@@ -386,6 +386,37 @@ namespace MotoLandAdmin {
             }
         }
 
+        public DataTable getFlag() {
+            try {
+                con.Connection.Open();
+                string sql = @"SELECT * FROM flag_mstr";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con.Connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                con.Connection.Close();
+                return dt;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        } /// getFlag
+
+
+        public DataTable getType() {
+            try {
+                con.Connection.Open();
+                string sql = @"SELECT * FROM usertype_mstr";
+                MySqlDataAdapter adapter = new MySqlDataAdapter(sql, con.Connection);
+                DataTable dt = new DataTable();
+                adapter.Fill(dt);
+                con.Connection.Close();
+                return dt;
+            } catch (System.Exception ex) {
+                MessageBox.Show(ex.Message);
+                return null;
+            }
+        } /// getType
+
 
         public DataView GetAllUser() {
             try {
