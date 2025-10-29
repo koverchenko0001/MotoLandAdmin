@@ -113,7 +113,7 @@ namespace MotoLandAdmin {
             if (activPageName == "accountSetup") { 
                 MyAccountPage myAccountPage = new MyAccountPage();
                 if (e.Key == Key.Escape) {
-                    myAccountPage.cancelProfil();
+                    myAccountPage.exitProfil();
                 }
                 if (e.Key == Key.F2) {
                     myAccountPage.saveProfil();

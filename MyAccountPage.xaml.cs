@@ -85,41 +85,41 @@ namespace MotoLandAdmin {
         } /// saveProfileBtn_Click
 
         public void saveProfil() {
-            if (MessageBox.Show("Menthetem?", "Információ", MessageBoxButton.YesNo, MessageBoxImage.Information) == MessageBoxResult.Yes) {
-                DateTime? birthDate = birthDateDP.SelectedDate;
+            DateTime? birthDate = birthDateDP.SelectedDate;
 
-                commandCom.updateUserProfile(
-                    _mainWindow.uid,
-                    nickNameTB.Text,
-                    firstNameTB.Text,
-                    middleNameTB.Text,
-                    lastNameTB.Text,
-                    Convert.ToInt32(birthPlaceCB.SelectedValue),
-                    birthDate.Value,
-                    Convert.ToInt32(genderCB.SelectedValue),
-                    emailTB.Text,
-                    phoneTB.Text,
-                    motherNameTB.Text,
-                    Convert.ToInt32(addressCountriesCB.SelectedValue),
-                    Convert.ToInt32(addressCitiesCB.SelectedValue),
-                    addressStreetTB.Text,
-                    addressAddressTB.Text,
-                    addressPostCodeTB.Text);
+            commandCom.updateUserProfile(
+                _mainWindow.uid,
+                nickNameTB.Text,
+                firstNameTB.Text,
+                middleNameTB.Text,
+                lastNameTB.Text,
+                Convert.ToInt32(birthPlaceCB.SelectedValue),
+                birthDate.Value,
+                Convert.ToInt32(genderCB.SelectedValue),
+                emailTB.Text,
+                phoneTB.Text,
+                motherNameTB.Text,
+                Convert.ToInt32(addressCountriesCB.SelectedValue),
+                Convert.ToInt32(addressCitiesCB.SelectedValue),
+                addressStreetTB.Text,
+                addressAddressTB.Text,
+                addressPostCodeTB.Text);
 
-                _mainWindow.activPageName = "HomePage";
-                _mainWindow.MainFrame.Navigate(new HomePage());
-            }            
-        } /// sa
+            MessageBox.Show("Frissítve!", "Információ", MessageBoxButton.OK, MessageBoxImage.Information);
+            exitProfil();
+        } /// saveProfileBtn_Click
 
-        private void cancelProfilBtn_Click(object sender, RoutedEventArgs e) {
-            cancelProfil();
-        } /// cancelProfilBtn_Click
 
-        public void cancelProfil() {
+        public void exitProfil() {
             _mainWindow.activPageName = "HomePage";
             _mainWindow.resetActiveItem();
             _mainWindow.MainFrame.Navigate(new HomePage());
             
+        }
+
+        private void exitProfilBtn_Click(object sender, RoutedEventArgs e) {
+            exitProfil();
+
         }
     }
 

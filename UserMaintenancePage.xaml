@@ -72,7 +72,9 @@
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="75"/>
                     <ColumnDefinition Width="75"/>
-                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="70"/>
+                    <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="70"/>
                     <ColumnDefinition Width="65"/>
@@ -101,8 +103,20 @@
                         Margin="5,0,0,5"
                         Click="usersCancel_Click"/>
                 </Grid>
-                
-                <Grid Grid.Column="3">
+
+                <Grid Grid.Column="4">
+                    <Button
+                        Name="usersRefresh"
+                        VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Width="60"
+                        Height="25"
+                        Content="Frissítés"
+                        Margin="0,0,0,0"                        
+                        Click="usersRefresh_Click"/>
+                </Grid>
+
+                <Grid Grid.Column="5">
                     <Button
                         Name="usersAdd"
                         VerticalAlignment="Top"
@@ -113,7 +127,7 @@
                         Margin="0,0,0,0"                        
                         Click="usersAdd_Click"/>
                 </Grid>
-                <Grid Grid.Column="4">
+                <Grid Grid.Column="6">
                     <Button
                         Name="usersRemove"
                         VerticalAlignment="Top"
@@ -124,7 +138,7 @@
                         Margin="0,0,5,0"                        
                         />
                 </Grid>
-                <Grid Grid.Column="5">
+                <Grid Grid.Column="7">
                     <Button
                         Name="usersDetails"
                         VerticalAlignment="Top"

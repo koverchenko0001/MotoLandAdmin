@@ -633,7 +633,7 @@
                 </Grid>
                 <Grid Grid.Column="2">
                     <Button
-                        Name="cancelProfilBtn"
+                        Name="exitProfilBtn"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center" 
                         Margin="10,0,0,0"
@@ -641,9 +641,9 @@
                         Width="90"
                         FontWeight="Bold"
                         Foreground="#FF222D22" 
-                        Content="Mégsem"
+                        Content="Kilépés"
                         Height="20" 
-                        Click="cancelProfilBtn_Click"/>
+                        Click="exitProfilBtn_Click"/>
 
                 </Grid>
 

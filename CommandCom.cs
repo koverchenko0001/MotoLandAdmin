@@ -287,6 +287,128 @@ namespace MotoLandAdmin {
             }
         } ///public string RegisterAdmin
 
+
+        public bool registerNewUser(object userData) {
+            var usr = userData.GetType().GetProperties();
+
+            try {
+                con.Connection.Open();
+                string sql = "";
+                MySqlCommand cmd;
+                /// USER_MSTR TABLE INSERT
+                sql = @"INSERT INTO 
+                            user_mstr (
+                                UserNickName_MSTR, 
+                                UserMail_MSTR, 
+                                UserTypeID_MSTR, 
+                                UserFlagID_MSTR) 
+                        VALUES (
+                                @nickname,
+                                @email,
+                                @typeid,
+                                @flagid)";
+
+
+                cmd = new MySqlCommand(sql, con.Connection);
+                cmd.Parameters.AddWithValue("@nickname", usr[0].GetValue(userData));
+                cmd.Parameters.AddWithValue("@email", usr[1].GetValue(userData));
+                cmd.Parameters.AddWithValue("@typeid", usr[3].GetValue(userData));
+                cmd.Parameters.AddWithValue("@flagid", usr[4].GetValue(userData));
+
+                cmd.ExecuteNonQuery();
+                string getLastIdSql = "SELECT LAST_INSERT_ID() AS LastID";
+                MySqlCommand getLastIdCmd = new MySqlCommand(getLastIdSql, con.Connection);
+                MySqlDataReader reader = getLastIdCmd.ExecuteReader();
+                int lastId = 0;
+                if (reader.Read()) {
+                    lastId = Convert.ToInt32(reader["LastID"]);
+                }
+                reader.Close();
+
+
+                /// USER_DET TABLE INSERT       
+                sql = @"INSERT INTO 
+                            user_det (
+                                UserMSTRID_DET, 
+                                UserFirstName_DET, 
+                                UserMiddleName_DET, 
+                                UserLastName_DET,
+                                UserGenderID_DET,
+                                UserPhone_DET,
+                                UserCountryID_DET,
+                                UserPostCode_DET,
+                                UserCityID_DET,
+                                UserStreet_DET,
+                                UserAddress_DET,
+                                UserMotherName_DET,
+                                UserBirthPlaceID_DET,
+                                UserBirthDate_DET,
+                                UserLastModifiedDate_DET) 
+                        VALUES (
+                                @uid,
+                                @firstname,
+                                @middlename,
+                                @lastname,
+                                @genderid,
+                                @phone,
+                                @countryid,
+                                @postcode,
+                                @cityid,
+                                @street,
+                                @address,
+                                @mothername,
+                                @birthplaceid,
+                                @birthdate,
+                                @lastmodified)";
+
+                cmd = new MySqlCommand(sql, con.Connection);
+                cmd.Parameters.AddWithValue("@uid", lastId);
+                cmd.Parameters.AddWithValue("@firstname", usr[5].GetValue(userData));
+                cmd.Parameters.AddWithValue("@middlename", usr[6].GetValue(userData));
+                cmd.Parameters.AddWithValue("@lastname", usr[7].GetValue(userData));
+                cmd.Parameters.AddWithValue("@genderid", usr[8].GetValue(userData));
+                cmd.Parameters.AddWithValue("@phone", usr[9].GetValue(userData));
+                cmd.Parameters.AddWithValue("@countryid", usr[10].GetValue(userData));
+                cmd.Parameters.AddWithValue("@postcode", usr[11].GetValue(userData));
+                cmd.Parameters.AddWithValue("@cityid", usr[12].GetValue(userData));
+                cmd.Parameters.AddWithValue("@street", usr[13].GetValue(userData));
+                cmd.Parameters.AddWithValue("@address", usr[14].GetValue(userData));
+                cmd.Parameters.AddWithValue("@mothername", usr[15].GetValue(userData));
+                cmd.Parameters.AddWithValue("@birthplaceid", usr[16].GetValue(userData));
+                cmd.Parameters.AddWithValue("@birthdate", usr[17].GetValue(userData));
+                cmd.Parameters.AddWithValue("@lastmodified", DateTime.Now);
+                cmd.ExecuteNonQuery(); 
+
+
+                string password = usr[2].GetValue(userData).ToString(); ///PASSWORD
+
+                /// PASSWORD_MSTR TABLE INSERT
+                sql = @"INSERT INTO 
+                            password_mstr (
+                                PasswordUserID_MSTR, 
+                                PasswordPassword_MSTR,  
+                                PasswordSalt_MSTR) 
+                            VALUES (
+                                @userid,
+                                @password,
+                                @salt)";
+
+                cmd = new MySqlCommand(sql, con.Connection);
+                string salt = GenSalt();
+                string hashedPassword = Hash256Password(password, salt);
+                cmd.Parameters.AddWithValue("@userid", lastId);
+                cmd.Parameters.AddWithValue("@password", hashedPassword);
+                cmd.Parameters.AddWithValue("@salt", salt);
+                cmd.ExecuteNonQuery();
+                con.Connection.Close();
+                return true;
+            } catch (System.Exception) {
+                return false;
+            }
+        } ///public string RegisterNewUser
+
+
+
         public string RegisterUser(string username, string password, string fullname, string email) {
             try {
                 con.Connection.Open();

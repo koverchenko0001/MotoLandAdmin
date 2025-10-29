@@ -59,9 +59,7 @@ namespace MotoLandAdmin {
             userBirthPlaceCB.SelectedValuePath = "CitiesID_MSTR";
             userBirthPlaceCB.DisplayMemberPath = "CitiesCity_MSTR";
 
-
             userNameTB.Focus();
-
         }
 
         private void Window_KeyUp(object sender, KeyEventArgs e) {
@@ -70,17 +68,43 @@ namespace MotoLandAdmin {
             }
         }
 
-        private void newUserCancel_Click(object sender, RoutedEventArgs e) {
-            closeNewUser();
+        private void newUserSave() {    
+            var userData = new {
+                userName = userNameTB.Text,
+                userEMail = userEmailTB.Text,
+                userPassword = userPasswordPB.Password,
+                userTypeID = userTypeCB.SelectedValue,
+                userFlagID = userFlagCB.SelectedValue,
+                userFirstName = userFirstNameTB.Text,
+                userMiddleName = userMiddleNameTB.Text,
+                userLastName = userLastNameTB.Text,
+                userGenderID = userGenderCB.SelectedValue,
+                userPhone = userPhoneTB.Text,
+                userCountryID = userCountryCB.SelectedValue,
+                userPostCode = userPostCodeTB.Text,
+                userCityID = userCityCB.SelectedValue,
+                userStreet = userStreetTB.Text,
+                userAddress = userAddressTB.Text,
+                userMotherName = userMotherNameTB.Text,
+                userBirthPlace = userBirthPlaceCB.SelectedValue,
+                userBirthDate = userBirthDateTB.Text
+            };
+            command.registerNewUser(userData);
         }
 
-        private void newUserSave_Click(object sender, RoutedEventArgs e) {
-            MessageBox.Show("Új felhasználó rögzítve!","Mentés", MessageBoxButton.OK, MessageBoxImage.Information);
-            closeNewUser();
-        }
         private void closeNewUser() {
             Close();
         }
 
+        private void newUserSaveBtn_Click(object sender, RoutedEventArgs e) {
+            newUserSave();
+            MessageBox.Show("Új felhasználó rögzítve!","Mentés", MessageBoxButton.OK, MessageBoxImage.Information);
+            closeNewUser();
+
+        }
+
+        private void newUserCancelBtn_Click(object sender, RoutedEventArgs e) {
+            closeNewUser();
+        }
     }
 }

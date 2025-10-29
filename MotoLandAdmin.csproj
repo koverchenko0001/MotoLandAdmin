@@ -208,6 +208,13 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Resource Include="power-off.png" />
+    <Resource Include="profile.png" />
+    <Resource Include="preferences.png" />
+    <Resource Include="product.png" />
+    <Resource Include="group.png" />
+    <Resource Include="check-out.png" />
+    <Resource Include="key.png" />
     <Content Include="motoland.sql" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

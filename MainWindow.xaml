@@ -17,7 +17,8 @@
 
             <MenuItem Header="Fájl">
                 <MenuItem Header="Adatbázis">
-                    <MenuItem Header="Exportálás" />
+                    <MenuItem Header="Exportálás">
+                    </MenuItem>
                     <MenuItem Header="Importálás" />
                 </MenuItem>
                 
@@ -27,11 +28,33 @@
             </MenuItem>
 
             <MenuItem Header="Karbantartás">
-                <MenuItem Header="Felhasználók" Name="userMaintenance" Click="MenuItem_Click"/>
-                <MenuItem Header="Termék" />
-                <MenuItem Header="Rendelés" />
+                
+                <MenuItem Header="Felhasználók" Name="userMaintenance" Click="MenuItem_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/group.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                
+                <MenuItem Header="Termék">
+                    <MenuItem.Icon>
+                        <Image Source="/product.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                
+                <MenuItem Header="Rendelés">
+                    <MenuItem.Icon>
+                        <Image Source="/check-out.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                
                 <Separator/>
-                <MenuItem Header="Beállítások" />
+                
+                <MenuItem Header="Beállítások">
+                    <MenuItem.Icon>
+                        <Image Source="/preferences.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
+                
             </MenuItem>
             <MenuItem Header="Kimutatás">
                 <MenuItem Header="Rendelés kimutatás" />
@@ -43,11 +66,23 @@
                 <Separator />
             </MenuItem>
             <MenuItem Header="User" Name="userNameItem" HorizontalAlignment="Right">
-                <MenuItem Header="Profil" Name="accountSetup" Click="MenuItem_Click"/>
+                <MenuItem Header="Profil" Name="accountSetup" Click="MenuItem_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/profile.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
-                <MenuItem Header="Jelszó csere" Name="changePassword" Click="MenuItem_Click"/>
+                <MenuItem Header="Jelszó csere" Name="changePassword" Click="MenuItem_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/key.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
                 <Separator />
-                <MenuItem Header="Kijelentkezés" Name="logOut" Click="MenuItem_Click"/>
+                <MenuItem Header="Kijelentkezés" Name="logOut" Click="MenuItem_Click">
+                    <MenuItem.Icon>
+                        <Image Source="/power-off.png"/>
+                    </MenuItem.Icon>
+                </MenuItem>
             </MenuItem>
         </Menu>
 
