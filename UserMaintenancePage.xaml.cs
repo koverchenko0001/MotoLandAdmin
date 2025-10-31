@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MySqlX.XDevAPI.Relational;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Linq;
@@ -20,10 +21,16 @@ namespace MotoLandAdmin {
         CommandCom command = new CommandCom();
         MainWindow _mainWindow = (MainWindow)Application.Current.MainWindow;
         private bool isChanged = false;
+        private int selectedRowIndex = 0;
+
+        List<int> idList = new List<int>();
+
+
+
 
         public UserMaintenancePage() {
             InitializeComponent();
-            _mainWindow.statusBarText.Text = "ESC-Kilépés   F2-Mentés   F3-Új felhasználó  F4-Részletek  F5-Frissítés   F8-Törlés";
+            _mainWindow.statusBarText.Text = "ESC-Kilépés   Ctrl+S-Mentés   F2-Cella szerkesztés   F3-Új felhasználó  F4-Cella lista  F5-Frissítés   F8-Törlés";
 
             refreshUsers();
         }
@@ -38,11 +45,19 @@ namespace MotoLandAdmin {
 
         private void cancelUserMaintenancePage() {
             if (isChanged) {
-                if (MessageBox.Show("A tartalom megváltozott!\nSzeretnéd menteni?", "Figyelem!", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes) {
+                MessageBoxResult res =
+                    MessageBox.Show("A tartalom megváltozott!\nSzeretnéd menteni?",
+                                    "Figyelem!",
+                                    MessageBoxButton.YesNoCancel,
+                                    MessageBoxImage.Question,
+                                    MessageBoxResult.Cancel);
+                if (res == MessageBoxResult.Yes) {
                     saveUserMaintenancePage();
-                }
-            }
-            exitUserMaintenance();
+                    exitUserMaintenance();
+                } else if (res == MessageBoxResult.No)
+                    exitUserMaintenance();
+            } else 
+                exitUserMaintenance();
         }
 
         private void exitUserMaintenance() {
@@ -52,44 +67,55 @@ namespace MotoLandAdmin {
             _mainWindow.resetActiveItem();
         }
 
-        private void saveUserMaintenancePage() { 
+        private void saveUserMaintenancePage() {
+            DataRowView r;
+            for (int ic = 0; ic < idList.Count; ic++) {
+                userDataGrid.SelectedIndex = idList[ic];
+                r = (DataRowView)userDataGrid.SelectedItems[0];
 
-            if (userDataGrid.SelectedItem is DataRowView _row) {
                 var userRow = new {
-                    uID = _row["UserID_MSTR"],
-                    uName = _row["UserNickName_MSTR"],
-                    uFirstName = _row["UserFirstName_DET"],
-                    uMiddleName = _row["UserMiddleName_DET"],
-                    uLastName = _row["UserLastName_DET"],
-                    uGender = _row["GenderID_MSTR"],
-                    uPhone = _row["UserPhone_DET"],
-                    uCountry = _row["CountriesID_MSTR"],
-                    uPostCode = _row["UserPostCode_DET"],
-                    uCity = _row["CitiesID_MSTR"],
-                    uStreet = _row["UserStreet_DET"],
-                    uAddress = _row["UserAddress_DET"],
-                    uMotherName = _row["UserMotherName_DET"],
-                    uBirthPlace = _row["CitiesID_MSTR"],
-                    uBirthDate = _row["UserBirthDate_DET"]
+                    uID = r["UserID_MSTR"],
+                    uName = r["UserNickName_MSTR"],
+                    uFirstName = r["UserFirstName_DET"],
+                    uMiddleName = r["UserMiddleName_DET"],
+                    uLastName = r["UserLastName_DET"],
+                    uGender = r["GenderID_MSTR"],
+                    uPhone = r["UserPhone_DET"],
+                    uCountry = r["CountriesID_MSTR"],
+                    uPostCode = r["UserPostCode_DET"],
+                    uCity = r["UserCity_DET"],
+                    uStreet = r["UserStreet_DET"],
+                    uAddress = r["UserAddress_DET"],
+                    uMotherName = r["UserMotherName_DET"],
+                    uBirthPlace = r["UserBirthPlace_DET"],
+                    uBirthDate = r["UserBirthDate_DET"]
                 };
 
-                command.UpdateUser(userRow);
-                userDataGrid.ItemsSource = command.GetAllUser();
+                command.updateUser(userRow);
+
             }
+            isChanged = false;
+            userDataGrid.Focus();
+            idList.Clear();
             MessageBox.Show("Frissítve!", "Információ", MessageBoxButton.OK, MessageBoxImage.Information);
 
         }
 
         private void userDataGrid_CellEditEnding(object sender, DataGridCellEditEndingEventArgs e) {
             isChanged = true;
+
+            var currentRowIndex = userDataGrid.Items.IndexOf(userDataGrid.CurrentItem);
+            if (!idList.Contains(currentRowIndex)) 
+                idList.Add(currentRowIndex);
         }
 
 
         private void userDataGrid_KeyUp(object sender, KeyEventArgs e) {
+
             if (e.Key == Key.Escape) {
                 cancelUserMaintenancePage();
             }
-            if (e.Key == Key.F2) {
+            if (e.Key == Key.S && Keyboard.Modifiers == ModifierKeys.Control) { 
                 saveUserMaintenancePage();
             }
             if (e.Key == Key.F3) {
@@ -97,6 +123,12 @@ namespace MotoLandAdmin {
             }
             if (e.Key == Key.F5) {
                 refreshUsers();
+            }
+            if (e.Key == Key.F6) {
+                showUserDetails();
+            }
+            if (e.Key == Key.F8) {
+                userRemove();
             }
             e.Handled = true;
         }
@@ -116,26 +148,62 @@ namespace MotoLandAdmin {
         }
 
         private void refreshUsers() {
-            /// DATAGRID UPLOADING
-            userDataGrid.ItemsSource = command.GetAllUser();
-            userDataGrid.Focus();
-            userDataGrid.SelectedIndex = 0;
+
             /// COUNTRIES COMBOBOX UPLOADING
             countryCB.ItemsSource = command.getCountries().DefaultView;
             countryCB.DisplayMemberPath = "CountriesCountry_MSTR";
             countryCB.SelectedValuePath = "CountriesID_MSTR";
-            /// CITIES COMBOBOX UPLOADING
-            cityCB.ItemsSource = command.getCities().DefaultView;
-            cityCB.DisplayMemberPath = "CitiesCity_MSTR";
-            cityCB.SelectedValuePath = "CitiesID_MSTR";
-            /// CITIES COMBOBOX UPLOADING
-            birthPlaceCityCB.ItemsSource = command.getCities().DefaultView;
-            birthPlaceCityCB.DisplayMemberPath = "CitiesCity_MSTR";
-            birthPlaceCityCB.SelectedValuePath = "CitiesID_MSTR";
             /// GENDER COMBOBOX UPLOADING
             genderCB.ItemsSource = command.getGender().DefaultView;
             genderCB.DisplayMemberPath = "GenderGender_MSTR";
             genderCB.SelectedValuePath = "GenderID_MSTR";
+
+            /// DATAGRID UPLOADING
+            userDataGrid.ItemsSource = command.getAllUser();
+            userDataGrid.Focus();
+            userDataGrid.SelectedIndex = selectedRowIndex;
+        }
+
+        private void userRemove() {
+            if (MessageBox.Show("Biztos, hogy törölni akarod?\nA felhasználó minden adata törlésre kerül!",
+                                "Törlés",
+                                
+                                MessageBoxButton.YesNo,
+                                MessageBoxImage.Warning, MessageBoxResult.No) == MessageBoxResult.Yes) {
+
+                if (userDataGrid.SelectedItem is DataRowView item) {
+                    var user = new {
+                        uid = item["UserID_MSTR"]
+                    };
+                    command.deleteUser(user);
+                }
+                refreshUsers();
+            }
+        }
+
+        private void showUserDetails() {
+            List<object> userDetails = new List<object>();
+
+            if (userDataGrid.SelectedItem is DataRowView r) {
+                userDetails.Add(r["UserRegDate_DET"]);
+                userDetails.Add(r["UserLastModifiedDate_DET"]);
+                userDetails.Add(r["UserTypeID_MSTR"]);
+                userDetails.Add(r["UserFlagID_MSTR"]);
+                userDetails.Add(r["UserID_MSTR"]);
+                userDetails.Add(r["UserNickname_MSTR"]);
+            }
+            UserDetails userDetailWindow = new UserDetails();
+            userDetailWindow.setDetailRow(userDetails);
+            userDetailWindow.ShowDialog();
+            refreshUsers();
+        }
+
+        private void usersRemove_Click(object sender, RoutedEventArgs e) {
+            userRemove();
+        }
+
+        private void usersDetails_Click(object sender, RoutedEventArgs e) {
+            showUserDetails();
         }
     }
 }

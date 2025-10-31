@@ -38,6 +38,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return ret;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return false;
             }
@@ -66,6 +67,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return userFlag;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return userFlag;
             }
@@ -129,6 +131,7 @@ namespace MotoLandAdmin {
                 return false;
 
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return false;
             }
@@ -176,13 +179,14 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return true;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return false;
             }
         } ///public bool ChangePassword
 
 
-        public bool RegisterAdmin(string nickname, string password, string email, int typeid, int flagid) {
+        public bool registerAdmin(string nickname, string password, string email, int typeid, int flagid) {
             try {
                 con.Connection.Open();
                 string sql = "";
@@ -229,11 +233,11 @@ namespace MotoLandAdmin {
                                 UserPhone_DET,
                                 UserCountryID_DET,
                                 UserPostCode_DET,
-                                UserCityID_DET,
+                                UserCity_DET,
                                 UserStreet_DET,
                                 UserAddress_DET,
                                 UserMotherName_DET,
-                                UserBirthPlaceID_DET,
+                                UserBirthPlace_DET,
                                 UserBirthDate_DET,
                                 UserLastModifiedDate_DET) 
                         VALUES (
@@ -245,12 +249,12 @@ namespace MotoLandAdmin {
                                 '',
                                 0,
                                 '',
-                                0,
                                 '',
                                 '',
                                 '',
-                                0,
-                                '1970-01-01',
+                                '',
+                                '',
+                                '1970.01.01.',
                                 @lastmodified)";
 
                 cmd = new MySqlCommand(sql, con.Connection);
@@ -283,6 +287,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return true;
             } catch (System.Exception) {
+                con.Connection.Close();
                 return false;
             }
         } ///public string RegisterAdmin
@@ -337,11 +342,11 @@ namespace MotoLandAdmin {
                                 UserPhone_DET,
                                 UserCountryID_DET,
                                 UserPostCode_DET,
-                                UserCityID_DET,
+                                UserCity_DET,
                                 UserStreet_DET,
                                 UserAddress_DET,
                                 UserMotherName_DET,
-                                UserBirthPlaceID_DET,
+                                UserBirthPlace_DET,
                                 UserBirthDate_DET,
                                 UserLastModifiedDate_DET) 
                         VALUES (
@@ -403,6 +408,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return true;
             } catch (System.Exception) {
+                con.Connection.Close();
                 return false;
             }
         } ///public string RegisterNewUser
@@ -428,6 +434,7 @@ namespace MotoLandAdmin {
 
                 return "Sikeres regisztráció";
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 return ex.Message;
             }
 
@@ -443,6 +450,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return dt;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }
@@ -458,6 +466,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return dt;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }
@@ -473,6 +482,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return dt;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }
@@ -488,6 +498,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return dt;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }
@@ -503,6 +514,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return dt;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }
@@ -518,6 +530,7 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return dt;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }
@@ -534,13 +547,14 @@ namespace MotoLandAdmin {
                 con.Connection.Close();
                 return dt;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }
         } /// getType
 
 
-        public DataView GetAllUser() {
+        public DataView getAllUser() {
             try {
                 con.Connection.Open();
 
@@ -552,16 +566,13 @@ namespace MotoLandAdmin {
                                     gender_mstr, 
                                     countries_mstr, 
                                     flag_mstr, 
-                                    usertype_mstr, 
-                                    cities_mstr 
+                                    usertype_mstr
                                 WHERE
                                     UserID_MSTR = UserMSTRID_DET AND
                                     user_mstr.UserTypeID_MSTR = usertype_mstr.UserTypeID_MSTR AND
                                     FlagID_MSTR = UserFlagID_MSTR AND
                                     UserGenderID_DET = GenderID_MSTR AND 
-                                    UserCountryID_DET = CountriesID_MSTR AND 
-                                    UserCityID_DET = CitiesID_MSTR AND
-                                    UserBirthPlaceID_DET = CitiesID_MSTR
+                                    UserCountryID_DET = CountriesID_MSTR
                                 ORDER BY
                                     UserFirstName_DET ASC";
 
@@ -575,32 +586,57 @@ namespace MotoLandAdmin {
 
                 return dt.DefaultView;
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
                 return null;
             }
 
         } ///public DataView GetAllUser
 
-        public void DeleteUser(object id) {
+        public void deleteUser(object id) {
             try {
                 con.Connection.Open();
+                var usr = id.GetType().GetProperties();
 
-                string sql = "DELETE FROM users WHERE Id = @id";
 
+                /// MSTR TABLE
+                string sql = @"DELETE FROM
+                                    user_mstr 
+                                WHERE 
+                                    UserID_MSTR = @uid";
                 MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
-
-                cmd.Parameters.AddWithValue("@id", id);
-
+                cmd.Parameters.AddWithValue("@uid", usr[0].GetValue(id));
                 cmd.ExecuteNonQuery();
+
+                /// DETAILS TABLE
+                sql = @"DELETE FROM
+                            user_det 
+                        WHERE 
+                           UserMSTRID_DET = @uid";
+                cmd = new MySqlCommand(sql, con.Connection);
+                cmd.Parameters.AddWithValue("@uid", usr[0].GetValue(id));
+                cmd.ExecuteNonQuery();
+
+                /// PASSWORD TABLE
+                sql = @"DELETE FROM
+                            password_mstr 
+                        WHERE 
+                            PasswordUserID_MSTR = @uid";
+                cmd = new MySqlCommand(sql, con.Connection);
+                cmd.Parameters.AddWithValue("@uid", usr[0].GetValue(id));
+                cmd.ExecuteNonQuery();
+
+
                 con.Connection.Close();
             } catch (System.Exception ex) {
+                con.Connection.Close();
                 MessageBox.Show(ex.Message);
             }
         } ///public void DeleteUser
 
 
-        public void updateUserProfile(string uid, string nickname, string firstname, string middlename, string lastname, int birthplaceid, DateTime     
-                                       birthdate, int genderid, string email, string phone, string motherName, int countryID, int cityid, string street, 
+        public void updateUserProfile(string uid, string nickname, string firstname, string middlename, string lastname, string birthplace, DateTime     
+                                       birthdate, int genderid, string email, string phone, string motherName, int countryID, string city, string street, 
                                        string address, string postcode) {
             try {
                 con.Connection.Open();
@@ -612,14 +648,14 @@ namespace MotoLandAdmin {
                                     UserFirstName_DET = @firstname,
                                     UserMiddleName_DET = @middlename,
                                     UserLastName_DET = @lastname,
-                                    UserBirthPlaceID_DET = @birthplaceid,
+                                    UserBirthPlace_DET = @birthplace,
                                     UserBirthDate_DET = @birthdate,
                                     UserGenderID_DET = @genderid,
                                     UserMail_MSTR = @email,
                                     UserPhone_DET = @phone,
                                     UserMotherName_DET = @mothername,
                                     UserCountryID_DET = @countryid,
-                                    UserCityID_DET = @cityid,
+                                    UserCity_DET = @city,
                                     UserStreet_DET = @street,
                                     UserAddress_DET = @address,
                                     UserPostCode_DET = @postcode,
@@ -635,14 +671,14 @@ namespace MotoLandAdmin {
                 cmd.Parameters.AddWithValue("@firstname", firstname);
                 cmd.Parameters.AddWithValue("@middlename", middlename);
                 cmd.Parameters.AddWithValue("@lastname", lastname);
-                cmd.Parameters.AddWithValue("@birthplaceid", birthplaceid);
+                cmd.Parameters.AddWithValue("@birthplace", birthplace);
                 cmd.Parameters.AddWithValue("@birthdate", birthdate);
                 cmd.Parameters.AddWithValue("@genderid", genderid);
                 cmd.Parameters.AddWithValue("@email", email);
                 cmd.Parameters.AddWithValue("@phone", phone);
                 cmd.Parameters.AddWithValue("@mothername", motherName);
                 cmd.Parameters.AddWithValue("@countryid", countryID);
-                cmd.Parameters.AddWithValue("@cityid", cityid);
+                cmd.Parameters.AddWithValue("@city", city);
                 cmd.Parameters.AddWithValue("@street", street);
                 cmd.Parameters.AddWithValue("@address", address);
                 cmd.Parameters.AddWithValue("@postcode", postcode);
@@ -652,13 +688,46 @@ namespace MotoLandAdmin {
 
                 con.Connection.Close();
             } catch (System.Exception ex) {
-                MessageBox.Show(ex.Message);
                 con.Connection.Close();
+                MessageBox.Show(ex.Message);
             }
 
         } ///public void UpdateUser
 
-        public void UpdateUser(object Row) {
+
+        public void updateUserDetails(string userID, string typeID, string flagID) {
+            try {
+                con.Connection.Open();
+
+                string sql = @"UPDATE 
+                                    user_mstr, user_det
+                                SET 
+                                    UserTypeID_MSTR = @typeID,
+                                    UserFlagID_MSTR = @flagID,
+                                    UserLastModifiedDate_DET = @lastmodifieddate
+                                WHERE  
+                                    UserID_MSTR = @uid AND
+                                    UserID_MSTR = UserMSTRID_DET";
+
+                MySqlCommand cmd = new MySqlCommand(sql, con.Connection);
+
+                cmd.Parameters.AddWithValue("@uid", userID);
+                cmd.Parameters.AddWithValue("@typeID", typeID);
+                cmd.Parameters.AddWithValue("@flagID", flagID);
+                cmd.Parameters.AddWithValue("@lastmodifieddate", DateTime.Now);
+
+                cmd.ExecuteNonQuery();
+
+                con.Connection.Close();
+            } catch (System.Exception ex) {
+                con.Connection.Close();
+                MessageBox.Show(ex.Message);
+            }
+
+        }
+        
+
+        public void updateUser(object Row) {
             try {
                 con.Connection.Open();
 
@@ -673,11 +742,11 @@ namespace MotoLandAdmin {
                                     UserPhone_DET = @uphone,
                                     UserCountryID_DET = @ucountry,
                                     UserPostCode_DET = @upostcode,
-                                    UserCityID_DET = @ucity,
+                                    UserCity_DET = @ucity,
                                     UserStreet_DET = @ustreet,
                                     UserAddress_DET = @uaddress,
                                     UserMotherName_DET = @umothername,
-                                    UserBirthPlaceID_DET = @ubirthplace,
+                                    UserBirthPlace_DET = @ubirthplace,
                                     UserBirthDate_DET = @ubirthdate,
                                     UserLastModifiedDate_DET = @ulastmodifieddate
                                 WHERE  
@@ -709,11 +778,12 @@ namespace MotoLandAdmin {
 
                 con.Connection.Close();
             } catch (System.Exception ex) {
-                MessageBox.Show(ex.Message+ " ittttttt");
+                con.Connection.Close();
+                MessageBox.Show(ex.Message);
             }
 
         }
 
 
-    } ///internal class CommandCom
+    } ///CommandCom
 }

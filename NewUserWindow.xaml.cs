@@ -49,15 +49,15 @@ namespace MotoLandAdmin {
             userCountryCB.SelectedValuePath = "CountriesID_MSTR";
             userCountryCB.DisplayMemberPath = "CountriesCountry_MSTR";
 
-            DataTable cityDT = command.getCities();
-            userCityCB.ItemsSource = cityDT.DefaultView;
-            userCityCB.SelectedValuePath = "CitiesID_MSTR";
-            userCityCB.DisplayMemberPath = "CitiesCity_MSTR";
+            //DataTable cityDT = command.getCities();
+            //userCityCB.ItemsSource = cityDT.DefaultView;
+            //userCityCB.SelectedValuePath = "CitiesID_MSTR";
+            //userCityCB.DisplayMemberPath = "CitiesCity_MSTR";
 
-            DataTable birthcityDT = command.getCities();
-            userBirthPlaceCB.ItemsSource = birthcityDT.DefaultView;
-            userBirthPlaceCB.SelectedValuePath = "CitiesID_MSTR";
-            userBirthPlaceCB.DisplayMemberPath = "CitiesCity_MSTR";
+            //DataTable birthcityDT = command.getCities();
+            //userBirthPlaceCB.ItemsSource = birthcityDT.DefaultView;
+            //userBirthPlaceCB.SelectedValuePath = "CitiesID_MSTR";
+            //userBirthPlaceCB.DisplayMemberPath = "CitiesCity_MSTR";
 
             userNameTB.Focus();
         }
@@ -82,11 +82,11 @@ namespace MotoLandAdmin {
                 userPhone = userPhoneTB.Text,
                 userCountryID = userCountryCB.SelectedValue,
                 userPostCode = userPostCodeTB.Text,
-                userCityID = userCityCB.SelectedValue,
+                userCity = userCityTB.Text,
                 userStreet = userStreetTB.Text,
                 userAddress = userAddressTB.Text,
                 userMotherName = userMotherNameTB.Text,
-                userBirthPlace = userBirthPlaceCB.SelectedValue,
+                userBirthPlace = userBirthPlaceTB.Text,
                 userBirthDate = userBirthDateTB.Text
             };
             command.registerNewUser(userData);

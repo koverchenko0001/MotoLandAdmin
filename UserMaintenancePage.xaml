@@ -45,21 +45,29 @@
 
                 <DataGrid.Columns>
                     
-                    <DataGridTextColumn Header="UID" Binding="{Binding UserID_MSTR}"/>
-                    <DataGridTextColumn Header="Felhasználónév" Binding="{Binding UserNickName_MSTR}"/>
+                    <DataGridTextColumn Header="UID" Binding="{Binding UserID_MSTR}" Visibility="Hidden"/>
+                    <DataGridTextColumn Header="Felhasználónév" Binding="{Binding UserNickName_MSTR}" IsReadOnly="True"/>
                     <DataGridTextColumn Header="Vezetéknév" Binding="{Binding UserFirstName_DET}"/>
                     <DataGridTextColumn Header="Keresztnév" Binding="{Binding UserMiddleName_DET}"/>
                     <DataGridTextColumn Header="Keresztnév" Binding="{Binding UserLastName_DET}"/>
-                    <DataGridComboBoxColumn x:Name="genderCB" Header="Nem" Width="70" TextBinding="{Binding GenderGender_MSTR}"/>
+                    <DataGridComboBoxColumn x:Name="genderCB" Header="Nem" Width="70" SelectedValueBinding="{Binding GenderID_MSTR}" TextBinding="{Binding GenderGender_MSTR}"/>
                     <DataGridTextColumn Header="Telefonszám" Binding="{Binding UserPhone_DET}"/>
-                    <DataGridComboBoxColumn x:Name="countryCB" Header="Ország" Width="150" TextBinding="{Binding CountriesCountry_MSTR}"/>
+                    <DataGridComboBoxColumn x:Name="countryCB" Header="Ország" Width="150" SelectedValueBinding="{Binding CountriesID_MSTR}" TextBinding="{Binding CountriesCountry_MSTR}"/>
                     <DataGridTextColumn Header="Irányítószám" Binding="{Binding UserPostCode_DET}"/>
-                    <DataGridComboBoxColumn x:Name="cityCB" Header="Város" Width="150" TextBinding="{Binding CitiesCity_MSTR}"/>
+                    <!--<DataGridComboBoxColumn x:Name="cityCB" Header="Város" Width="150" SelectedValueBinding="{Binding CitiesID_MSTR}" TextBinding="{Binding CitiesCity_MSTR}"/>-->
+                    <DataGridTextColumn Header="Város" Width="150" Binding="{Binding UserCity_DET}"/>
                     <DataGridTextColumn Header="Utca" Binding="{Binding UserStreet_DET}"/>
                     <DataGridTextColumn Header="Házszám" Binding="{Binding UserAddress_DET}"/>
                     <DataGridTextColumn Header="Anyja neve" Binding="{Binding UserMotherName_DET}"/>
-                    <DataGridComboBoxColumn x:Name="birthPlaceCityCB" Header="Város" Width="150" TextBinding="{Binding CitiesCity_MSTR}"/>
+                    <!--<DataGridComboBoxColumn x:Name="birthPlaceCityCB" Header="Születési hely" Width="150" SelectedValueBinding="{Binding CitiesID_MSTR}" TextBinding="{Binding CitiesCity_MSTR}"/>-->
+                    <DataGridTextColumn Header="Születési hely" Width="150" Binding="{Binding UserBirthPlace_DET}"/>
                     <DataGridTextColumn Header="Születési idő" Binding="{Binding UserBirthDate_DET, StringFormat=\{0:yyyy.MM.dd\}}"/>
+
+
+                    <DataGridTextColumn Visibility="Hidden" Header="Hidden" Binding="{Binding UserRegDate_DET, StringFormat=\{0:yyyy.MM.dd\}}"/>
+                    <DataGridTextColumn Visibility="Hidden" Header="Hidden" Binding="{Binding UserLastModifiedDate_DET, StringFormat=\{0:yyyy.MM.dd\}}"/>
+                    <DataGridTextColumn Visibility="Hidden" Header="Hidden" Binding="{Binding UserTypeID_MSTR}"/>
+                    <DataGridTextColumn Visibility="Hidden" Header="Hidden" Binding="{Binding UserFlagID_MSTR}"/>
                 </DataGrid.Columns>
             </DataGrid>
 
@@ -135,7 +143,7 @@
                         Width="60"
                         Height="25"
                         Content="Törlés"
-                        Margin="0,0,5,0"                        
+                        Margin="0,0,5,0" Click="usersRemove_Click"                        
                         />
                 </Grid>
                 <Grid Grid.Column="7">
@@ -146,7 +154,7 @@
                         Width="60"
                         Height="25"
                         Content="Részletek"
-                        Margin="0,0,0,0"                        
+                        Margin="0,0,0,0" Click="usersDetails_Click"                        
                         />
                 </Grid>
             

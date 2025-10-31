@@ -89,6 +89,7 @@ namespace MotoLandAdmin {
                         break;
                     case "logOut":
                         cs.setNewDimensions("login");
+                        resetActiveItem();
                         break;
                     default:
                         break;

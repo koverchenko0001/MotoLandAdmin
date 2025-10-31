@@ -444,8 +444,8 @@
 
                 </Grid>
                 <Grid Grid.Column="1">
-                    <ComboBox
-                        Name="userCityCB"
+                    <TextBox
+                        Name="userCityTB"
                         Width="150"
                         Height="20"
                         VerticalAlignment="Center"
@@ -560,9 +560,9 @@
 
                 </Grid>
                 <Grid Grid.Column="1">
-                    <ComboBox
-                        Name="userBirthPlaceCB"
-                        Width="100"
+                    <TextBox
+                        Name="userBirthPlaceTB"
+                        Width="150"
                         Height="20"
                         VerticalAlignment="Center"
                         HorizontalAlignment="Left"

@@ -322,8 +322,8 @@
                         Text="Város:"/>
                 </Grid>
                 <Grid Grid.Column="3">
-                    <ComboBox
-                        Name="addressCitiesCB"
+                    <TextBox
+                        Name="addressCitiesTB"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center" 
                         FontSize="12" 
@@ -423,8 +423,8 @@
                         Text="Születési hely:"/>
                 </Grid>
                 <Grid Grid.Column="1">
-                    <ComboBox
-                        Name="birthPlaceCB"
+                    <TextBox
+                        Name="birthPlaceTB"
                         HorizontalAlignment="Left" 
                         VerticalAlignment="Center" 
                         FontSize="12" 

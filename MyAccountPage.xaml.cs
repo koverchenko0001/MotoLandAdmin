@@ -41,13 +41,13 @@ namespace MotoLandAdmin {
 
             dt = commandCom.getTableFromDB("cities_mstr");
             /// CITIES TABLE
-            addressCitiesCB.ItemsSource = dt.DefaultView;    
-            addressCitiesCB.SelectedValuePath = "CitiesID_MSTR";
-            addressCitiesCB.DisplayMemberPath = "CitiesCity_MSTR";
+            //addressCitiesCB.ItemsSource = dt.DefaultView;    
+            //addressCitiesCB.SelectedValuePath = "CitiesID_MSTR";
+            //addressCitiesCB.DisplayMemberPath = "CitiesCity_MSTR";
             /// BIRTHPLACE TABLE
-            birthPlaceCB.ItemsSource = dt.DefaultView;
-            birthPlaceCB.SelectedValuePath = "CitiesID_MSTR";
-            birthPlaceCB.DisplayMemberPath = "CitiesCity_MSTR";
+            //birthPlaceCB.ItemsSource = dt.DefaultView;
+            //birthPlaceCB.SelectedValuePath = "CitiesID_MSTR";
+            //birthPlaceCB.DisplayMemberPath = "CitiesCity_MSTR";
 
             dt = commandCom.getTableFromDB("gender_mstr");
             /// GENDER TABLE
@@ -62,14 +62,14 @@ namespace MotoLandAdmin {
                 firstNameTB.Text = row["UserFirstName_DET"].ToString();
                 middleNameTB.Text = row["UserMiddleName_DET"].ToString();
                 lastNameTB.Text = row["UserLastName_DET"].ToString();
-                birthPlaceCB.SelectedValue = row["UserBirthPlaceID_DET"].ToString();
+                birthPlaceTB.Text = row["UserBirthPlace_DET"].ToString();
                 birthDateDP.SelectedDate = Convert.ToDateTime(row["UserBirthDate_DET"]);
                 genderCB.SelectedValue = row["UserGenderID_DET"].ToString();
                 emailTB.Text = row["UserMail_MSTR"].ToString();
                 phoneTB.Text = row["UserPhone_DET"].ToString();
                 motherNameTB.Text = row["UserMotherName_DET"].ToString();
                 addressCountriesCB.SelectedValue = row["UserCountryID_DET"].ToString();
-                addressCitiesCB.SelectedValue = row["UserCityID_DET"].ToString();
+                addressCitiesTB.Text = row["UserCity_DET"].ToString();
                 addressStreetTB.Text = row["UserStreet_DET"].ToString();
                 addressAddressTB.Text = row["UserAddress_DET"].ToString();
                 addressPostCodeTB.Text = row["UserPostCode_DET"].ToString();
@@ -93,14 +93,14 @@ namespace MotoLandAdmin {
                 firstNameTB.Text,
                 middleNameTB.Text,
                 lastNameTB.Text,
-                Convert.ToInt32(birthPlaceCB.SelectedValue),
+                birthPlaceTB.Text,
                 birthDate.Value,
                 Convert.ToInt32(genderCB.SelectedValue),
                 emailTB.Text,
                 phoneTB.Text,
                 motherNameTB.Text,
                 Convert.ToInt32(addressCountriesCB.SelectedValue),
-                Convert.ToInt32(addressCitiesCB.SelectedValue),
+                addressCitiesTB.Text,
                 addressStreetTB.Text,
                 addressAddressTB.Text,
                 addressPostCodeTB.Text);

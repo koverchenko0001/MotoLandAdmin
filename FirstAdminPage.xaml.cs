@@ -31,7 +31,7 @@ namespace MotoLandAdmin {
         }
 
         private void adminRegistrationBtn_Click(object sender, RoutedEventArgs e) {
-            if (command.RegisterAdmin(
+            if (command.registerAdmin(
                         adminNickNameTB.Text,
                         adminPasswordPB.Password,
                         adminMailTB.Text,
