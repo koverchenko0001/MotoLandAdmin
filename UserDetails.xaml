@@ -1,0 +1,200 @@
+﻿<Window x:Class="MotoLandAdmin.UserDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MotoLandAdmin"
+        mc:Ignorable="d"
+        Title="Részletek" Height="400" Width="400" WindowStyle="ToolWindow" ResizeMode="NoResize" ShowInTaskbar="False" WindowStartupLocation="CenterScreen" KeyUp="Window_KeyUp" Closing="Window_Closing">
+    <Grid>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="25"/>
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Border 
+                Background="#FF667566"/>
+
+            <TextBlock 
+                HorizontalAlignment="Left" 
+                VerticalAlignment="Center" 
+                FontSize="20" 
+                FontWeight="Bold"
+                Height="23" 
+                Margin="10,0,0,0"
+                Text="Részletek" 
+                Foreground="#FFE2D8D8"/>
+        </Grid>
+
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="128"/>
+                <ColumnDefinition Width="60"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Text="ID:"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox
+                    Name="userIDTB"
+                    Width="50"
+                    Margin="5,0,0,0"
+                    Text=""
+                    IsReadOnly="True"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            </Grid>
+            
+            <Grid Grid.Column="2">
+                <Label
+                    Name="userNameL"
+                    Content=""
+                    Margin="0,0,0,2"
+                    Width="100"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+
+
+
+
+
+
+        <Grid Grid.Row="3">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Text="Jogosutsági szint:"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <ComboBox
+                    Name="userTypeCB"
+                    Width="150"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+
+        
+        
+        <Grid Grid.Row="4">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Text="Státusz:"/>
+            </Grid>
+            <Grid Grid.Column="2">
+                <ComboBox
+                    Name="userFlagCB"
+                    Width="150"
+                    Margin="5,0,0,0"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+
+
+        <Grid Grid.Row="6">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Text="Regisztráció:"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox
+                    Name="userRegDateTB"
+                    Width="130"
+                    Margin="5,0,0,0"
+                    Text=""
+                    IsReadOnly="True"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+
+        
+        <Grid Grid.Row="7">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="2*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+                <TextBlock
+                    Margin="0,0,5,0"
+                    HorizontalAlignment="Right"
+                    VerticalAlignment="Center"
+                    Text="Utolsó módosítás:"/>
+            </Grid>
+            <Grid Grid.Column="1">
+                <TextBox
+                    Name="userLastDateTB"
+                    Width="130"
+                    Margin="5,0,0,0"
+                    Text=""
+                    IsReadOnly="True"
+                    VerticalAlignment="Center"
+                    HorizontalAlignment="Left"/>
+            </Grid>
+        </Grid>
+
+
+
+
+        <Grid Grid.Row="9">
+            <Button
+                Name="userDetailsSaveBtn"
+                Width="100"
+                Height="30"
+                VerticalAlignment="Top"
+                Content="Mentés"
+                Click="userDetailsSaveBtn_Click"/>
+
+            <StatusBar VerticalAlignment="Bottom" Height="22" Name="newUserStatusBar">
+                <StatusBarItem>
+                    <TextBlock x:Name="newUserStatusBarText" Text="ESC-Kilépés   F2-Mentés" FontSize="10" Margin="5,0,0,2"/>
+                </StatusBarItem>
+            </StatusBar>
+        </Grid>
+    </Grid>
+</Window>
